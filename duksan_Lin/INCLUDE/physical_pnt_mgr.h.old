@@ -1,0 +1,56 @@
+#ifndef POINT_HANDLER_H
+#define POINT_HANDLER_H
+
+#define DEBUG
+
+#define  DEV_FILENAME			"/dev/s3c2410_adc"
+
+#define RTD110_Vref	    3.0
+#define RTD110_Rs	    806.0
+#define RTD110_R1	    15400.0
+#define RTD110_R2	    69800.0
+#define RTD110_R3	    18500.0
+
+#define JPT1000_RMIN	(799.6)
+#define JPT1000_RMAX	(1582.9)
+#define JPT1000_TMIN	(-50.0)
+#define JPT1000_TMAX	(+150.0)
+#define JPT1000A	    -5.48515174029550e-012
+#define JPT1000B	    2.67670242107196e-008
+#define JPT1000C	    -3.80325882914131e-005
+#define JPT1000D	    2.68968161152949e-001
+#define JPT1000E	    -2.52206610536658e+002
+
+// 97/03/18 Corrected by LGS
+#define DPT1000_RMIN	(803.1)
+#define DPT1000_RMAX	(1573.1)
+#define DPT1000_TMIN	(-50.0)
+#define DPT1000_TMAX	(+150.0)
+#define DPT1000A	    1.25823718339531e-012
+#define DPT1000B	    -6.12227895906572e-009
+#define DPT1000C	    2.11726626679994e-005
+#define DPT1000D	    2.26871251433859e-001
+#define DPT1000E	    -2.43190758466095e+002
+
+
+typedef struct
+{
+	unsigned char c_pno;
+	unsigned char c_type;
+	unsigned char c_length;
+	unsigned int  n_val;
+	unsigned char c_chksum;
+}__attribute__((packed)) PNT_DEV_MSG_T;
+
+typedef struct
+{
+	int n_dev;
+	unsigned char *p_rx;
+	unsigned char *p_tx;
+	unsigned short w_pno;
+	unsigned short w_type;
+}__attribute__((packed)) PNT_HANDLER_T;
+
+
+
+#endif

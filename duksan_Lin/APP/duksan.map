@@ -1,0 +1,1859 @@
+Archive member included because of file (symbol)
+
+/korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc_nonshared.a(elf-init.oST)
+                              /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o (__libc_csu_init)
+/korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+                              Src/demo_handler.o (__divsi3)
+/korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+                              Src/demo_handler.o (__modsi3)
+/korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+                              /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS) (__div0)
+./Lib/libbacnet.a(apdu.o)     Iface/BACNET/bacnet_manager.o (apdu_set_confirmed_handler)
+./Lib/libbacnet.a(bacdcode.o)
+                              ./Lib/libbacnet.a(apdu.o) (decode_max_segs)
+./Lib/libbacnet.a(bacint.o)   ./Lib/libbacnet.a(bacdcode.o) (encode_unsigned16)
+./Lib/libbacnet.a(bacreal.o)  ./Lib/libbacnet.a(bacdcode.o) (encode_bacnet_real)
+./Lib/libbacnet.a(bacstr.o)   ./Lib/libbacnet.a(bacdcode.o) (bitstring_init)
+./Lib/libbacnet.a(bacapp.o)   Iface/BACNET/bacnet_manager.o (bacapp_decode_application_data)
+./Lib/libbacnet.a(bactext.o)  ./Lib/libbacnet.a(bacapp.o) (bactext_object_type_name)
+./Lib/libbacnet.a(datetime.o)
+                              ./Lib/libbacnet.a(bacapp.o) (datetime_copy_date)
+./Lib/libbacnet.a(indtext.o)  ./Lib/libbacnet.a(bactext.o) (indtext_by_istring)
+./Lib/libbacnet.a(dcc.o)      ./Lib/libbacnet.a(apdu.o) (dcc_communication_disabled)
+./Lib/libbacnet.a(rp.o)       Iface/BACNET/bacnet_manager.o (rp_ack_decode_service_request)
+./Lib/libbacnet.a(tsm.o)      Iface/BACNET/writeprop.o (tsm_timer_milliseconds)
+./Lib/libbacnet.a(bacaddr.o)  ./Lib/libbacnet.a(tsm.o) (bacnet_address_copy)
+./Lib/libbacnet.a(address.o)  Iface/BACNET/bacnet_manager.o (address_init)
+./Lib/libbacnet.a(bvlc.o)     Iface/BACNET/writeprop.o (bvlc_receive)
+./Lib/libbacnet.a(bip.o)      ./Lib/libbacnet.a(bvlc.o) (bip_socket)
+./Lib/libbacnet.a(dlenv.o)    Iface/BACNET/bacnet_manager.o (dlenv_init)
+./Lib/libbacnet.a(noserv.o)   Iface/BACNET/bacnet_manager.o (handler_unrecognized_service)
+./Lib/libbacnet.a(h_npdu.o)   Iface/BACNET/writeprop.o (npdu_handler)
+./Lib/libbacnet.a(h_whois.o)  Iface/BACNET/bacnet_manager.o (handler_who_is)
+./Lib/libbacnet.a(h_iam.o)    Iface/BACNET/bacnet_manager.o (handler_i_am_bind)
+./Lib/libbacnet.a(h_rp.o)     Iface/BACNET/bacnet_manager.o (handler_read_property_object_set)
+./Lib/libbacnet.a(s_iam.o)    ./Lib/libbacnet.a(h_whois.o) (Send_I_Am)
+./Lib/libbacnet.a(s_rp.o)     Iface/BACNET/bacnet_manager.o (Send_Read_Property_Request)
+./Lib/libbacnet.a(s_whois.o)  Iface/BACNET/writeprop.o (Send_WhoIs)
+./Lib/libbacnet.a(s_wp.o)     Iface/BACNET/writeprop.o (Send_Write_Property_Request)
+./Lib/libbacnet.a(device.o)   ./Lib/libbacnet.a(h_whois.o) (Device_Object_Instance_Number)
+./Lib/libbacnet.a(npdu.o)     ./Lib/libbacnet.a(tsm.o) (npdu_copy_data)
+./Lib/libbacnet.a(iam.o)      ./Lib/libbacnet.a(s_iam.o) (iam_encode_apdu)
+./Lib/libbacnet.a(whois.o)    ./Lib/libbacnet.a(s_whois.o) (whois_encode_apdu)
+./Lib/libbacnet.a(wp.o)       ./Lib/libbacnet.a(s_wp.o) (wp_encode_apdu)
+./Lib/libbacnet.a(abort.o)    ./Lib/libbacnet.a(h_rp.o) (abort_encode_apdu)
+./Lib/libbacnet.a(reject.o)   ./Lib/libbacnet.a(noserv.o) (reject_encode_apdu)
+./Lib/libbacnet.a(bacerror.o)
+                              ./Lib/libbacnet.a(h_rp.o) (bacerror_encode_apdu)
+./Lib/libbacnet.a(version.o)  ./Lib/libbacnet.a(device.o) (BACnet_Version)
+./Lib/libbacnet.a(bip-init.o)
+                              ./Lib/libbacnet.a(dlenv.o) (bip_getaddrbyname)
+./Lib/libbacnet.a(txbuf.o)    ./Lib/libbacnet.a(noserv.o) (Handler_Transmit_Buffer)
+./Lib/libbacnet.a(h_cov.o)    ./Lib/libbacnet.a(device.o) (handler_cov_encode_subscriptions)
+./Lib/libbacnet.a(bi.o)       ./Lib/libbacnet.a(h_cov.o) (Binary_Input_Valid_Instance)
+./Lib/libbacnet.a(cov.o)      ./Lib/libbacnet.a(h_cov.o) (ccov_notify_encode_apdu)
+
+Allocating common symbols
+Common symbol       size              file
+
+rxbuf               0x400             Iface/IFACE_GHP/ghp_app.o
+g_pList             0x4               Src/watchdog.o
+dnp_master_addr     0x2               Iface/IFACE_DNP/iface_dnp.o
+g_pCal              0x4               Src/main.o
+g_cNode             0x20              Src/main.o
+g_pPtbl             0x4               Src/main.o
+ghp_message_queue   0xc008            Src/main.o
+Local_Date          0x8               ./Lib/libbacnet.a(device.o)
+g_nMyPcm            0x4               Src/main.o
+diPtbl              0x400000          Src/main.o
+g_pDongInfo         0x4               Iface/IFACE_GHP/ghp_app.o
+g_CntHaksaInit      0x4               Iface/IFACE_GHP/ghp_app.o
+sched_rx_msg        0x132a            Iface/IFACE_GHP/ghp_ScheduleSvr.o
+nVal                0x400             Src/modbus_mgr.o
+g_pPrevList         0x4               Src/watchdog.o
+doPrePtbl           0x400000          Iface/BACNET/writeprop.o
+g_schedule          0x2490            Src/main.o
+g_GHPWeb_Pcm        0x800             Iface/IFACE_GHP/ghp_WebSvr.o
+web_tx_msg          0x132a            Iface/IFACE_GHP/ghp_WebSvr.o
+aiPtbl              0x800000          Src/main.o
+modbusSvr_rx_msg    0x1000            Src/modbus_mgr.o
+web2_tx_msg         0x132a            Iface/IFACE_GHP/ghp_Web2Svr.o
+bacnet_message_queue
+                    0xc008            Src/main.o
+trans_seq           0x1               Iface/IFACE_DNP/iface_dnp.o
+data_val            0x200             Iface/IFACE_GHP/ghp_WebSvr.o
+bacnetFile          0x100000          Src/main.o
+message             0x132a            Iface/IFACE_GHP/ghp_ScheduleSvr.o
+uclient_queue       0xc008            Src/main.o
+Kisuksa_Data        0x3c              Src/main.o
+Dong_Data           0xd4              Src/main.o
+subio_txmsg         0x1000            Src/subio_mgr.o
+g_iPollState        0x4               Iface/IFACE_GHP/ghp_app.o
+web2_rx_msg         0x132a            Iface/IFACE_GHP/ghp_Web2Svr.o
+g_iUart2Fd          0x4               Iface/IFACE_GHP/ghp_app.o
+prePtbl             0x8000            Iface/IFACE_GHP/ghp_app.o
+apg_queue           0xc008            Src/main.o
+g_UnitData          0xb300            Src/main.o
+app_seq             0x1               Iface/IFACE_DNP/iface_dnp.o
+DNP_BUF_CNT         0x4               Iface/IFACE_DNP/iface_dnp.o
+g_fExPtbl           0x8000            Src/main.o
+net32_queue         0xc008            Src/main.o
+g_ElbaStatus        0xc               Src/elba_mgr.o
+sched_tx_msg        0x132a            Iface/IFACE_GHP/ghp_ScheduleSvr.o
+DNP_ai_point        0x4000            Src/main.o
+plcData             0x4000            Src/main.o
+debug_plc_tx        0x4               Src/main.o
+ccms_queue          0xc008            Src/main.o
+dnp_dl_control      0x1               Iface/IFACE_DNP/iface_dnp.o
+DNP_di_point        0x2000            Src/main.o
+DNP_do_point        0x2000            Src/main.o
+g_nWatchdogCount    0x4               Src/watchdog.o
+svr_dnp             0x10              Iface/IFACE_DNP/iface_dnp.o
+Local_Time          0x4               ./Lib/libbacnet.a(device.o)
+g_net32_status      0xc               Src/net32_mgr.o
+cmd_tx_msg          0x1000            Src/cmd_handler.o
+dnp_slave_addr      0x2               Iface/IFACE_DNP/iface_dnp.o
+g_nSubioAliveChk    0x10              Src/subio_mgr.o
+msoPtbl             0x400000          Src/main.o
+DNP_ao_point        0x4000            Src/main.o
+subio_rxmsg         0x1000            Src/subio_mgr.o
+g_fPreExPtbl        0x8000            Src/main.o
+cmd_rx_msg          0x1000            Src/cmd_handler.o
+msiPtbl             0x400000          Src/main.o
+g_GHPWeb_Pno        0x800             Iface/IFACE_GHP/ghp_WebSvr.o
+g_Web2Fval          0x800             Iface/IFACE_GHP/ghp_Web2Svr.o
+elba_queue          0xc008            Src/main.o
+rt_param            0x4               Src/main.o
+Dong_Outdoor_Data   0xa4              Src/main.o
+msoPrePtbl          0x400000          Iface/BACNET/writeprop.o
+g_Web2Data          0x200             Iface/IFACE_GHP/ghp_Web2Svr.o
+g_GHPWeb_fVal       0x800             Iface/IFACE_GHP/ghp_WebSvr.o
+g_schedFileData     0xd1c             Iface/IFACE_GHP/ghp_app.o
+g_Web2_Pno          0x800             Iface/IFACE_GHP/ghp_Web2Svr.o
+aoPtbl              0x800000          Src/main.o
+aoPrePtbl           0x800000          Iface/BACNET/writeprop.o
+g_nPntValue         0x80              Src/point_mgr.o
+rt_attributes       0x4               Src/main.o
+g_PollEvents        0x8               Iface/IFACE_GHP/ghp_app.o
+doPtbl              0x400000          Src/main.o
+g_time              0xc               Src/main.o
+g_Web2_Pcm          0x800             Iface/IFACE_GHP/ghp_Web2Svr.o
+plc_message_queue   0xc008            Src/main.o
+txbuf               0x400             Iface/IFACE_GHP/ghp_app.o
+web_rx_msg          0x132a            Iface/IFACE_GHP/ghp_WebSvr.o
+modbusSvr_tx_msg    0x1000            Src/modbus_mgr.o
+g_fVal              0x400             Src/modbus_mgr.o
+g_nFileAccess       0x80              Src/main.o
+debug_plc_rx        0x4               Src/main.o
+dbg_msg             0x132a            Iface/IFACE_GHP/ghp_ScheduleSvr.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/librt.so
+LOAD Src/main.o
+LOAD Src/crc16.o
+LOAD Src/queue_handler.o
+LOAD Src/net32_mgr.o
+LOAD Src/point_observer.o
+LOAD Src/point_handler.o
+LOAD Src/point_mgr.o
+LOAD Src/cmd_handler.o
+LOAD Src/apg_mgr.o
+LOAD Src/iface_handler.o
+LOAD Src/demo_handler.o
+LOAD Src/elba_mgr.o
+LOAD Src/log_mgr.o
+LOAD Src/modbus_mgr.o
+LOAD Src/subio_mgr.o
+LOAD Src/dbsvr_mgr.o
+LOAD Src/userver_mgr.o
+LOAD Src/uclient_mgr.o
+LOAD Src/watchdog.o
+LOAD Iface/BACNET/writeprop.o
+LOAD Iface/BACNET/bacnet_manager.o
+LOAD Iface/IFACE_DNP/iface_dnp.o
+LOAD Iface/IFACE_DNP/iface_net32_to_dnp.o
+LOAD Iface/IFACE_GHP/ghp_WebSvr.o
+LOAD Iface/IFACE_GHP/ghp_Web2Svr.o
+LOAD Iface/IFACE_GHP/ghp_ScheduleSvr.o
+LOAD Iface/IFACE_GHP/ghp_app.o
+LOAD Iface/IFACE_HANTEC/iface_hantec.o
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc.so
+START GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc.so.6
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc_nonshared.a
+END GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libm.so
+LOAD ./Lib/libbacnet.a
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libgcc_s.so
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libpthread.so
+START GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libpthread.so.0
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libpthread_nonshared.a
+END GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc.so
+START GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc.so.6
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc_nonshared.a
+END GROUP
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libgcc_s.so
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+LOAD /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+                0x00008000                PROVIDE (__executable_start, 0x8000)
+                0x000080f4                . = (0x8000 + SIZEOF_HEADERS)
+
+.interp         0x000080f4       0x13
+ *(.interp)
+ .interp        0x000080f4       0x13 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.note.ABI-tag   0x00008108       0x20
+ .note.ABI-tag  0x00008108       0x20 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+
+.hash           0x00008128      0x330
+ *(.hash)
+ .hash          0x00008128      0x330 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.dynsym         0x00008458      0x690
+ *(.dynsym)
+ .dynsym        0x00008458      0x690 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.dynstr         0x00008ae8      0x434
+ *(.dynstr)
+ .dynstr        0x00008ae8      0x434 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.gnu.version    0x00008f1c       0xd2
+ *(.gnu.version)
+ .gnu.version   0x00008f1c       0xd2 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r  0x00008ff0       0x60
+ *(.gnu.version_r)
+ .gnu.version_r
+                0x00008ff0       0x60 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.rel.dyn        0x00009050       0x38
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ .rel.got       0x00009050       0x28 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ .rel.bss       0x00009078       0x10 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt        0x00009088      0x300
+ *(.rel.plt)
+ .rel.plt       0x00009088      0x300 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+
+.rela.plt
+ *(.rela.plt)
+
+.init           0x00009388       0x14
+ *(.init)
+ .init          0x00009388        0x8 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x00009388                _init
+ .init          0x00009390        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ .init          0x00009394        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+ .init          0x00009398        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.plt            0x0000939c      0x494
+ *(.plt)
+ .plt           0x0000939c      0x494 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x000093b0                pthread_attr_init@@GLIBC_2.1
+                0x000093bc                mkdir@@GLIBC_2.0
+                0x000093c8                pthread_attr_setschedparam@@GLIBC_2.0
+                0x000093d4                feof@@GLIBC_2.0
+                0x000093e0                __ctype_tolower_loc@@GLIBC_2.3
+                0x000093ec                nanosleep@@GLIBC_2.0
+                0x000093f8                sched_get_priority_min@@GLIBC_2.0
+                0x00009404                settimeofday@@GLIBC_2.0
+                0x00009410                write@@GLIBC_2.0
+                0x0000941c                poll@@GLIBC_2.0
+                0x00009428                localtime@@GLIBC_2.0
+                0x00009434                recvfrom@@GLIBC_2.0
+                0x00009440                strcmp@@GLIBC_2.0
+                0x0000944c                close@@GLIBC_2.0
+                0x00009458                pthread_attr_setscope@@GLIBC_2.0
+                0x00009464                perror@@GLIBC_2.0
+                0x00009470                fprintf@@GLIBC_2.0
+                0x0000947c                getenv@@GLIBC_2.0
+                0x00009488                signal@@GLIBC_2.0
+                0x00009494                fflush@@GLIBC_2.0
+                0x000094a0                sched_get_priority_max@@GLIBC_2.0
+                0x000094ac                pthread_create@@GLIBC_2.1
+                0x000094b8                unlink@@GLIBC_2.0
+                0x000094c4                select@@GLIBC_2.0
+                0x000094d0                strerror@@GLIBC_2.0
+                0x000094dc                tcsetattr@@GLIBC_2.0
+                0x000094e8                putchar@@GLIBC_2.0
+                0x000094f4                __errno_location@@GLIBC_2.0
+                0x00009500                ftell@@GLIBC_2.0
+                0x0000950c                accept@@GLIBC_2.0
+                0x00009518                system@@GLIBC_2.0
+                0x00009524                access@@GLIBC_2.0
+                0x00009530                inet_ntoa@@GLIBC_2.0
+                0x0000953c                puts@@GLIBC_2.0
+                0x00009548                listen@@GLIBC_2.0
+                0x00009554                difftime@@GLIBC_2.0
+                0x00009560                malloc@@GLIBC_2.0
+                0x0000956c                sched_yield@@GLIBC_2.0
+                0x00009578                fscanf@@GLIBC_2.0
+                0x00009584                pthread_attr_setschedpolicy@@GLIBC_2.0
+                0x00009590                fread@@GLIBC_2.0
+                0x0000959c                memmove@@GLIBC_2.0
+                0x000095a8                sendto@@GLIBC_2.0
+                0x000095b4                shmget@@GLIBC_2.0
+                0x000095c0                stime@@GLIBC_2.0
+                0x000095cc                pthread_attr_getschedpolicy@@GLIBC_2.0
+                0x000095d8                getsockopt@@GLIBC_2.0
+                0x000095e4                abort@@GLIBC_2.0
+                0x000095f0                setsockopt@@GLIBC_2.0
+                0x000095fc                fseek@@GLIBC_2.0
+                0x00009608                pthread_attr_getschedparam@@GLIBC_2.0
+                0x00009614                time@@GLIBC_2.0
+                0x00009620                mktime@@GLIBC_2.0
+                0x0000962c                pthread_mutex_lock@@GLIBC_2.0
+                0x00009638                fgets@@GLIBC_2.0
+                0x00009644                fputs@@GLIBC_2.0
+                0x00009650                strlen@@GLIBC_2.0
+                0x0000965c                sleep@@GLIBC_2.0
+                0x00009668                strncmp@@GLIBC_2.0
+                0x00009674                strtol@@GLIBC_2.0
+                0x00009680                fputc@@GLIBC_2.0
+                0x0000968c                inet_addr@@GLIBC_2.0
+                0x00009698                __libc_start_main@@GLIBC_2.0
+                0x000096a4                printf@@GLIBC_2.0
+                0x000096b0                bind@@GLIBC_2.0
+                0x000096bc                fcntl@@GLIBC_2.0
+                0x000096c8                memcpy@@GLIBC_2.0
+                0x000096d4                fclose@@GLIBC_2.1
+                0x000096e0                gettimeofday@@GLIBC_2.0
+                0x000096ec                opendir@@GLIBC_2.0
+                0x000096f8                open@@GLIBC_2.0
+                0x00009704                gethostbyname@@GLIBC_2.0
+                0x00009710                tcflush@@GLIBC_2.0
+                0x0000971c                pthread_exit@@GLIBC_2.0
+                0x00009728                exit@@GLIBC_2.0
+                0x00009734                atoi@@GLIBC_2.0
+                0x00009740                sscanf@@GLIBC_2.0
+                0x0000974c                free@@GLIBC_2.0
+                0x00009758                send@@GLIBC_2.0
+                0x00009764                ioctl@@GLIBC_2.0
+                0x00009770                strtoul@@GLIBC_2.0
+                0x0000977c                memset@@GLIBC_2.0
+                0x00009788                connect@@GLIBC_2.0
+                0x00009794                strtod@@GLIBC_2.0
+                0x000097a0                strncpy@@GLIBC_2.0
+                0x000097ac                fopen@@GLIBC_2.1
+                0x000097b8                pthread_mutex_unlock@@GLIBC_2.0
+                0x000097c4                recv@@GLIBC_2.0
+                0x000097d0                sprintf@@GLIBC_2.0
+                0x000097dc                fwrite@@GLIBC_2.0
+                0x000097e8                socket@@GLIBC_2.0
+                0x00009800                __ctype_b_loc@@GLIBC_2.3
+                0x0000980c                tcgetattr@@GLIBC_2.0
+                0x00009818                read@@GLIBC_2.0
+                0x00009824                shmat@@GLIBC_2.0
+
+.text           0x00009830    0x32484
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x00009830       0x38 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+                0x00009830                _start
+ .text          0x00009868       0x30 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .text          0x00009898       0x98 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ .text          0x00009930     0x168c Src/main.o
+                0x0000a474                calibration_init
+                0x0000ac28                Make_Prompt_Shell
+                0x0000a574                point_table_init
+                0x0000aa3c                bacnet_file_init
+                0x0000a44c                file_access_init
+                0x00009930                main
+                0x0000a850                point_file_init
+                0x0000aec8                bootup_data
+                0x0000add4                get_thread_opt
+                0x0000af64                app_version_init
+                0x0000ab34                plc_file_init
+                0x0000a3e0                queue_init
+                0x0000ac9c                get_my_pcm
+ .text          0x0000afbc       0x50 Src/crc16.o
+                0x0000afbc                IsCrc16
+ .text          0x0000b00c       0xe0 Src/queue_handler.o
+                0x0000b00c                initq
+                0x0000b028                putq
+                0x0000b0dc                queue_full
+                0x0000b0e4                queue_empty
+                0x0000b080                getq
+ .text          0x0000b0ec      0xad4 Src/net32_mgr.o
+                0x0000b384                net32_recv_message
+                0x0000b8a8                net32_save_file
+                0x0000b968                net32_main
+                0x0000b7f8                net32_open
+                0x0000b3d0                net32_data_handler
+                0x0000b120                net32_pop_queue
+                0x0000b0ec                net32_push_queue
+                0x0000b168                net32_send_message
+                0x0000b72c                net32_init
+ .text          0x0000bbc0      0x6c8 Src/point_observer.o
+                0x0000bda4                httpd_file_check
+                0x0000be24                releaseFileAccess
+                0x0000c224                fileStatusCheck
+                0x0000bdd4                getFileAccess
+                0x0000c264                point_observer_main
+                0x0000be74                file_check
+                0x0000bbc0                pnt_observer_value_check
+ .text          0x0000c288      0x6d8 Src/point_handler.o
+                0x0000c2d8                pnt_ismin
+                0x0000c288                pnt_ismax
+                0x0000c524                pnt_local_adc
+                0x0000c328                pnt_is_hyst
+                0x0000c648                pnt_local_subio
+                0x0000c404                pnt_local_pset
+                0x0000c774                pSet
+                0x0000c8bc                pReq
+                0x0000c878                pGet
+                0x0000c8f4                pDef
+ .text          0x0000c960     0x3aa0 Src/point_mgr.o
+                0x0000edf0                pnt_cal_load
+                0x0000f278                pnt_cal_grp
+                0x0000dca4                pnt_calibration
+                0x0000f37c                pnt_cal_setvalue
+                0x0000ea3c                pnt_log
+                0x0000efa0                pnt_cal_display
+                0x0000eae4                physical_pnt_mgr_main
+                0x0000f1d4                pnt_cal_zero
+                0x0000ee98                pnt_cal_init
+                0x0000eef8                pnt_cal_save
+ .text          0x00010400     0x2d84 Src/cmd_handler.o
+                0x000115e4                cmd_dbgNrx
+                0x00012e1c                cmd_hget
+                0x000117a4                cmd_mtr
+                0x00010dc8                Cmd_Close
+                0x00010ff0                cmd_pinfo
+                0x000121a0                cmd_rpset
+                0x00010e08                command_handler_main
+                0x00010440                New_Cmd
+                0x00011704                cmd_dbgIface
+                0x000109e0                Cmd_Accept
+                0x0001187c                cmd_node
+                0x00012198                cmd_status
+                0x00011494                cmd_dbgTcp
+                0x000108b8                Cmd_Open
+                0x00011544                cmd_dbgNtx
+                0x00012cb8                cmd_hset
+                0x00012098                cmd_calibration
+                0x00011bb0                cmd_pdef
+                0x0001317c                cmd_pntlog
+                0x000113a4                cmd_preq
+                0x00010400                commandHandlerSelectSleep
+                0x000122c4                cmd_make_pctrl_file
+                0x000119d0                cmd_view
+                0x00010eec                cmd_pset
+                0x00010acc                On_Cmd_Recv
+                0x00010b34                On_Cmd_Handler
+                0x00011ac0                cmd_apset
+                0x00011684                cmd_dbgSubio
+                0x00012f0c                cmd_dinfo
+ .text          0x00013184      0xbb0 Src/apg_mgr.o
+                0x00013b28                apg_handler_main
+                0x00013750                apg_parsing
+                0x000134c8                apg_send_ack_message
+                0x00013878                apg_handler
+                0x00013598                apg_send_fail_message
+                0x000132e4                apg_open
+                0x00013668                apg_send_info_message
+                0x000134bc                apg_recv_message
+                0x00013184                apg_init
+ .text          0x00013d34     0x1378 Src/demo_handler.o
+                0x00014614                PPCON
+                0x00014144                D_CONT
+                0x000146ec                RPPCON
+                0x00014d68                Demo_IDC_02
+                0x00014df0                Demo_IDC_01
+                0x00013db4                iPget
+                0x00013df4                SMCON
+                0x00014500                CHANGECONT
+                0x00014354                DAMCON
+                0x0001429c                DCOMP
+                0x00013fec                DCONT
+                0x00014b28                FMCCON
+                0x00014968                PICONTROL
+                0x00013e6c                CTCON
+                0x00013dd4                iPset
+                0x00014f50                demo_main
+                0x000144a4                CONT
+                0x000147c4                PICON
+                0x00014bf4                AUTOSET
+ .text          0x000150ac     0x11f8 Src/elba_mgr.o
+                0x00016090                elba_save_file
+                0x000157c8                elba_open
+                0x000150ac                elba_push_queue
+                0x0001539c                elba_get_chksum8
+                0x00015564                elba_get_station_ipaddr
+                0x000153cc                elba_send_time_message
+                0x00015680                elba_init
+                0x00015a70                elba_parsing
+                0x000151d8                elba_change_byte_order
+                0x0001574c                elba_close
+                0x00015128                elba_make_tx_message
+                0x00015d68                elba_recv_message
+                0x000150e0                elba_pop_queue
+                0x0001520c                elba_send_message
+                0x0001611c                elba_main
+ .text          0x000162a4      0x814 Src/log_mgr.o
+                0x000162e4                syslog_record
+ .text          0x00016ab8      0xa24 Src/modbus_mgr.o
+                0x00017280                modsvr_main
+                0x00016f00                modsvr_handler
+                0x00016af8                mdsvr_log
+ .text          0x000174dc     0x1394 Src/subio_mgr.o
+                0x000186d4                subio_main
+                0x00018684                subio_value_zero
+ .text          0x00018870      0x944 Src/dbsvr_mgr.o
+                0x00018ee0                dbsvr_send_message
+                0x00018870                dbsvr_init
+                0x00018a24                dbsvr_open
+                0x0001907c                dbsvr_main
+                0x00018df8                dbsvr_make_messge
+                0x00018f84                dbsvr_handler
+                0x0001897c                dbsvr_close
+                0x00018f34                dbsvr_recv_message
+ .text          0x000191b4      0x1cc Src/userver_mgr.o
+                0x000191b4                userver_debug
+                0x000191c4                userver_HandleClient
+                0x00019268                userver_main
+ .text          0x00019380      0x2ec Src/uclient_mgr.o
+                0x00019380                uclient_debug
+                0x00019554                uclient_main
+                0x00019400                uclient_HandleClient
+                0x00019384                uclient_push_queue
+                0x000193b8                uclient_pop_queue
+ .text          0x0001966c      0x1f0 Src/watchdog.o
+                0x0001966c                watchdog_main
+ .text          0x0001985c      0x398 Iface/BACNET/writeprop.o
+                0x0001985c                BACnet_writeprop
+ .text          0x00019bf4     0x19c4 Iface/BACNET/bacnet_manager.o
+                0x0001a9a0                setup_my_info
+                0x0001a718                bacnet_update_ptbl
+                0x00019bf4                put_bacnet_message_queue
+                0x00019c7c                check_bacnet_message_queue
+                0x0001acf4                read_readPoint
+                0x0001a9bc                bacnet_write_For_AHU
+                0x00019c3c                get_bacnet_message_queue
+                0x0001a4d0                BACnet_readprop
+                0x0001b360                read_OnOff
+                0x0001b40c                bacnet_readprop_main
+                0x0001afb0                read_readPoint_for_AHU
+                0x00019da8                inchun_interlock
+                0x0001ab48                bacnet_write
+ .text          0x0001b5b8     0x2110 Iface/IFACE_DNP/iface_dnp.o
+                0x0001bcc4                mk_unsol_ao
+                0x0001c108                rd_point
+                0x0001b92c                mk_unsol
+                0x0001bacc                mk_unsol_do
+                0x0001cedc                rd_lpdu
+                0x0001b608                mk_lpdu
+                0x0001d414                accept_request
+                0x0001cae0                send_confirm
+                0x0001c034                check_unsol
+                0x0001cdb8                send_ACK
+                0x0001becc                mk_unsol_ao_from_other_hmi
+                0x0001d214                dnp_thread
+                0x0001cd88                dnp_reset
+                0x0001cc50                rd_apdu
+                0x0001d120                get_command
+                0x0001c778                wr_point
+                0x0001d5b0                dnp_observer_main
+                0x0001b83c                mk_tpdu
+                0x0001b5b8                dnp_mkcrc16
+ .text          0x0001d6c8     0x3a80 Iface/IFACE_DNP/iface_net32_to_dnp.o
+                0x00021138                net32_to_dnp_main
+                0x0001e41c                sunrung_substation
+                0x0001d86c                eusadang_substation
+                0x0001d6c8                net32todnpHandlerSelectSleep
+                0x0001d700                DNP_DIO_define
+                0x00020c9c                update_dnp_ptbl
+                0x00020c98                dnp_ptbl_set
+                0x0001d78c                DNP_AIO_define
+ .text          0x00021148      0xc94 Iface/IFACE_GHP/ghp_WebSvr.o
+                0x00021148                IfaceGhpWeb1SelectSleep
+                0x00021c44                web_handler
+                0x00021924                webserver_main
+ .text          0x00021ddc      0xb70 Iface/IFACE_GHP/ghp_Web2Svr.o
+                0x000226e8                web2server_main
+                0x000225b8                web2_handler_2
+                0x00021ddc                IfaceGhpWeb2SelectSleep
+ .text          0x0002294c      0xc64 Iface/IFACE_GHP/ghp_ScheduleSvr.o
+                0x00022b9c                sched_recv_message
+                0x00023150                Check_Message
+                0x00022a28                shced_open
+                0x0002320c                Parsing_Data
+                0x0002298c                new_sched
+                0x00022ba8                schedule_main
+                0x00022fc0                SetDate
+                0x00022e44                schedule_handler
+ .text          0x000235b0     0x9d50 Iface/IFACE_GHP/ghp_app.o
+                0x0002409c                OnReadIn
+                0x0002484c                RecvDataParsing
+                0x0002b908                Set_AllStopMode
+                0x0002c75c                Auto_OutUnitCtrl_C
+                0x0002d140                Do_User_Control
+                0x00024ff8                Get_Bno_Pno_Outdoor
+                0x0002d264                CheckUserControl
+                0x0002b548                hong_read_name
+                0x00029c90                ReadScheduleMethod
+                0x0002b70c                Get_RunUnit
+                0x00024f94                Get_Bno_Pno
+                0x0002cfb4                Chk_User_Control
+                0x0002468c                Write_Point_Table
+                0x00024800                Get_Block_Number
+                0x000237c4                Get_Bcc
+                0x00024074                OnWriteOut
+                0x00023894                itoa
+                0x00023da0                Make_Startup_Msg
+                0x0002ae84                hong_get_ghp_data
+                0x0002507c                Get_Bno_Pno_Type
+                0x0002a850                SetScheduleData
+                0x00029d9c                ReadGroupScheduleTime
+                0x00023f58                Add_Text
+                0x000239e0                Make_Digital_Set_Msg
+                0x0002a3e8                RunSchduleControl
+                0x0002a65c                CheckFileChksum
+                0x000241a0                Write_Point
+                0x0002a144                Sched_FreeMode
+                0x0002a094                CheckLimitTime
+                0x0002c38c                Auto_OutUnitCtrl
+                0x00023ef8                Make_Initial_Msg
+                0x0002b994                Log_Scehudule
+                0x0002ce64                IfaceGhpSelectSleep
+                0x000238a8                Start_Text
+                0x0002acd0                hong_get_unit_cnt
+                0x000239b4                End_Text
+                0x0002cb9c                hong_while
+                0x00024e54                Startup_SDDC
+                0x0002a310                Sched_ForceMode_2
+                0x0002d2b0                iface_ghp_main
+                0x0002ca9c                Set_AllHaksaMode
+                0x00024704                Write_Error_Table
+                0x00029b80                ReadScheduleMode
+                0x000299a4                Chk_Group_Control
+                0x0002a264                Sched_ForceMode
+                0x00024834                Get_Point_Number
+                0x0002a9a4                Check_Schedule
+                0x0002c2b4                Get_IndoorUnitRunTime
+                0x0002a73c                ReadScheduleFile
+                0x00023b08                Make_Analog_Set_Msg
+                0x00025100                Chk_All_Haksa
+                0x00029a44                ReadScheduleGroup
+                0x00023ca4                Make_Read_Msg
+                0x0002c53c                Auto_OutUnitCtrl_A
+                0x0002aa7c                hong_init_data
+                0x0002aafc                hong_set_pcm_number
+                0x00024048                init_poll
+                0x0002c97c                Set_Temperature
+                0x0002cea4                Get_Ghp_Unit
+ .text          0x0002d300     0x1c60 Iface/IFACE_HANTEC/iface_hantec.o
+                0x0002d588                IFaceHT_On_Recv_Handler
+                0x0002dbd4                IFaceHT_On_Send_Handler
+                0x0002e6b8                IfaceHT_Close
+                0x0002dd24                IFaceHT_On_Change_SlaveId
+                0x0002dcac                IFaceHT_On_Alive_Handler
+                0x0002de7c                IFaceHT_On_Make_Data
+                0x0002e9c4                IFaceHT_KimChun
+                0x0002e8b4                IFaceHT_Guri
+                0x0002d338                IFaceHT_On_Send
+                0x0002d44c                IFaceHT_On_Recv
+                0x0002d300                IfaceHT_Sleep
+                0x0002e420                IFaceHT_On_Observer
+                0x0002e360                IFaceHT_On_Dummy_Handler
+                0x0002ec88                IfaceHT_GetConfig
+                0x0002e708                IfaceHT_Open
+                0x0002e4e0                New_IfaceHT
+                0x0002edd0                IfaceHT_Main
+                0x0002ebfc                IFaceHT_PointSet
+                0x0002eae0                IFaceHT_OhSong
+ .text          0x0002ef60       0xc8 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc_nonshared.a(elf-init.oST)
+                0x0002efc4                __libc_csu_fini
+                0x0002ef60                __libc_csu_init
+ .text          0x0002f028       0xb0 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+                0x0002f028                __divsi3
+ .text          0x0002f0d8       0xd4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+                0x0002f0d8                __modsi3
+ .text          0x0002f1ac       0x1c /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+                0x0002f1ac                __div0
+ .text          0x0002f1c8      0x800 ./Lib/libbacnet.a(apdu.o)
+                0x0002f200                apdu_service_supported
+                0x0002f3c8                apdu_set_reject_handler
+                0x0002f3b8                apdu_set_abort_handler
+                0x0002f288                apdu_set_confirmed_simple_ack_handler
+                0x0002f494                apdu_timeout
+                0x0002f318                apdu_set_confirmed_ack_handler
+                0x0002f4b4                apdu_retries
+                0x0002f1dc                apdu_set_unrecognized_service_handler_handler
+                0x0002f3d8                apdu_decode_confirmed_service_request
+                0x0002f3a4                apdu_set_error_handler
+                0x0002f4a4                apdu_timeout_set
+                0x0002f1c8                apdu_set_confirmed_handler
+                0x0002f4c4                apdu_retries_set
+                0x0002f1ec                apdu_set_unconfirmed_handler
+                0x0002f4d4                apdu_handler
+ .text          0x0002f9c8     0x18e0 ./Lib/libbacnet.a(bacdcode.o)
+                0x000311bc                decode_date_safe
+                0x00030104                encode_context_boolean
+                0x0003066c                encode_context_octet_string
+                0x00030458                decode_object_id
+                0x000301c4                encode_context_null
+                0x00030b58                decode_context_enumerated
+                0x00031290                encode_simple_ack
+                0x00030318                encode_bitstring
+                0x00031020                decode_application_time
+                0x000305a4                encode_octet_string
+                0x00030780                encode_bacnet_character_string
+                0x0002fc44                encode_closing_tag
+                0x00031234                decode_context_date
+                0x00031118                encode_application_date
+                0x00030090                decode_is_closing_tag_number
+                0x00030e34                encode_application_real
+                0x000310c4                encode_bacnet_date
+                0x00031068                decode_context_bacnet_time
+                0x00030518                encode_bacnet_object_id
+                0x000306e8                decode_octet_string
+                0x000301b4                encode_application_null
+                0x000308a8                decode_character_string
+                0x00030dbc                encode_context_signed
+                0x00030cbc                decode_context_signed
+                0x00030570                encode_application_object_id
+                0x00030f28                encode_bacnet_time
+                0x00030bec                encode_context_enumerated
+                0x0003049c                decode_object_id_safe
+                0x000305f8                encode_application_octet_string
+                0x0002fc88                decode_tag_number
+                0x0003114c                encode_context_date
+                0x00030bb4                encode_bacnet_enumerated
+                0x00030840                encode_context_character_string
+                0x00030148                decode_context_boolean2
+                0x00030034                decode_is_opening_tag_number
+                0x0002fe48                decode_tag_number_and_value_safe
+                0x000300ec                encode_application_boolean
+                0x0002fcc8                decode_tag_number_safe
+                0x00030a3c                encode_bacnet_unsigned
+                0x00030ea8                encode_application_double
+                0x00030c4c                decode_signed
+                0x000308dc                decode_context_character_string
+                0x00030d1c                encode_bacnet_signed
+                0x0002f9c8                encode_max_segs_max_apdu
+                0x0003052c                encode_context_object_id
+                0x00030138                decode_context_boolean
+                0x00030ff0                decode_bacnet_time_safe
+                0x000309dc                decode_context_unsigned
+                0x0002fb3c                encode_tag
+                0x00030a90                encode_context_unsigned
+                0x0002fd64                decode_tag_number_and_value
+                0x0002fa6c                decode_max_segs
+                0x00030404                encode_context_bitstring
+                0x00030e6c                encode_context_real
+                0x00030fc4                decode_bacnet_time
+                0x0002fd34                decode_is_opening_tag
+                0x000307d8                encode_application_character_string
+                0x0002fad8                decode_max_apdu
+                0x000304b4                decode_context_object_id
+                0x000302b8                decode_context_bitstring
+                0x00030b24                decode_enumerated
+                0x00030f54                encode_application_time
+                0x00030710                decode_context_octet_string
+                0x00030ee4                encode_context_double
+                0x00030d88                encode_application_signed
+                0x0002ffdc                decode_is_context_tag_with_length
+                0x00030bb8                encode_application_enumerated
+                0x00030af0                encode_application_unsigned
+                0x00031188                decode_date
+                0x00030230                decode_bitstring
+                0x000303b0                encode_application_bitstring
+                0x0002fd4c                decode_is_closing_tag
+                0x00030958                decode_unsigned
+                0x000301a8                decode_boolean
+                0x00030f88                encode_context_time
+                0x0002ff8c                decode_is_context_tag
+                0x000311ec                decode_application_date
+                0x0002fc00                encode_opening_tag
+ .text          0x000312a8      0x268 ./Lib/libbacnet.a(bacint.o)
+                0x00031340                encode_unsigned32
+                0x00031400                decode_signed16
+                0x000314ac                encode_signed32
+                0x00031444                encode_signed24
+                0x00031460                decode_signed24
+                0x000312f0                encode_unsigned24
+                0x000312c4                decode_unsigned16
+                0x000313b0                decode_signed8
+                0x000314d0                decode_signed32
+                0x000313e4                encode_signed16
+                0x0003130c                decode_unsigned24
+                0x00031364                decode_unsigned32
+                0x000313a4                encode_signed8
+                0x000312a8                encode_unsigned16
+ .text          0x00031510      0x230 ./Lib/libbacnet.a(bacreal.o)
+                0x00031664                decode_double_safe
+                0x00031510                decode_real
+                0x000316e4                decode_context_double
+                0x000315f4                decode_double
+                0x0003154c                decode_real_safe
+                0x00031698                encode_bacnet_double
+                0x00031570                decode_context_real
+                0x000315cc                encode_bacnet_real
+ .text          0x00031740      0x840 ./Lib/libbacnet.a(bacstr.o)
+                0x00031ec8                octetstring_value
+                0x00031ad4                characterstring_ansi_copy
+                0x00031cf0                characterstring_truncate
+                0x00031d58                characterstring_encoding
+                0x00031bd8                characterstring_ansi_same
+                0x00031800                bitstring_bits_used
+                0x00031d6c                octetstring_init
+                0x000317c0                bitstring_bit
+                0x00031ea0                octetstring_truncate
+                0x000318a8                bitstring_bits_capacity
+                0x00031a4c                characterstring_init_ansi
+                0x00031878                bitstring_set_bits_used
+                0x00031b30                characterstring_same
+                0x00031e34                octetstring_append
+                0x00031d40                characterstring_capacity
+                0x00031808                bitstring_bytes_used
+                0x00031dfc                octetstring_copy
+                0x000319a0                characterstring_init
+                0x00031828                bitstring_octet
+                0x000318b8                bitstring_copy
+                0x00031c84                characterstring_append
+                0x00031edc                octetstring_length
+                0x00031740                bitstring_init
+                0x00031768                bitstring_set_bit
+                0x00031d18                characterstring_value
+                0x00031f08                octetstring_value_same
+                0x00031d2c                characterstring_length
+                0x00031ef0                octetstring_capacity
+                0x0003184c                bitstring_set_octet
+                0x00031a88                characterstring_copy
+                0x000318f8                bitstring_same
+ .text          0x00031f80     0x10cc ./Lib/libbacnet.a(bacapp.o)
+                0x00032080                bacapp_decode_data
+                0x00032398                bacapp_encode_context_data_value
+                0x00032da8                bacapp_parse_application_data
+                0x0003267c                bacapp_encode_data
+                0x00032498                bacapp_context_tag_type
+                0x0003227c                bacapp_decode_application_data_safe
+                0x000327cc                bacapp_data_len
+                0x00031f80                bacapp_encode_application_data
+                0x000321fc                bacapp_decode_application_data
+                0x0003291c                bacapp_print_value
+                0x000325c4                bacapp_decode_context_data
+                0x000326bc                bacapp_copy
+                0x0003256c                bacapp_encode_context_data
+ .text          0x0003304c      0x418 ./Lib/libbacnet.a(bactext.o)
+                0x000331bc                bactext_engineering_unit_index
+                0x000333ec                bactext_binary_present_value_index
+                0x00033390                bactext_event_transition_index
+                0x000333b4                bactext_event_state_name
+                0x00033144                bactext_property_id
+                0x000332fc                bactext_week_of_month_name
+                0x000332a0                bactext_error_code_name
+                0x0003342c                bactext_device_status_name
+                0x000330e0                bactext_object_type_index
+                0x00033158                bactext_property_index
+                0x00033084                bactext_application_tag_name
+                0x00033410                bactext_reliability_name
+                0x00033448                bactext_segmentation_name
+                0x00033068                bactext_unconfirmed_service_name
+                0x00033318                bactext_day_of_week_name
+                0x00033334                bactext_days_of_week_name
+                0x000331e0                bactext_reject_reason_name
+                0x00033220                bactext_abort_reason_name
+                0x00033260                bactext_error_class_name
+                0x00033374                bactext_event_transition_name
+                0x000330a0                bactext_object_type_name
+                0x0003317c                bactext_engineering_unit_name
+                0x00033104                bactext_property_name
+                0x00033350                bactext_days_of_week_index
+                0x000332e0                bactext_month_name
+                0x0003304c                bactext_confirmed_service_name
+                0x000333d0                bactext_binary_present_value_name
+ .text          0x00033464      0x864 ./Lib/libbacnet.a(datetime.o)
+                0x00033a4c                datetime_add_minutes
+                0x000337f0                datetime_copy_date
+                0x00033824                datetime_copy_time
+                0x00033c14                bacapp_decode_datetime
+                0x00033b0c                datetime_wildcard
+                0x00033b74                datetime_time_wildcard_set
+                0x000338c8                datetime_set_time
+                0x00033884                datetime_set_date
+                0x00033b90                datetime_wildcard_set
+                0x00033bb0                bacapp_encode_context_datetime
+                0x00033c60                bacapp_decode_context_datetime
+                0x00033764                datetime_compare_time
+                0x00033b50                datetime_date_wildcard_set
+                0x00033958                datetime_set_values
+                0x000338f0                datetime_set
+                0x00033724                datetime_compare_date
+                0x0003385c                datetime_copy
+                0x000337b4                datetime_compare
+ .text          0x00033cc8      0x238 ./Lib/libbacnet.a(indtext.o)
+                0x00033ecc                indtext_count
+                0x00033e34                indtext_by_istring_default
+                0x00033d88                indtext_by_istring
+                0x00033e68                indtext_by_index_default
+                0x00033cc8                stricmp
+                0x00033ec4                indtext_by_index
+                0x00033eb0                indtext_by_index_split_default
+                0x00033d10                indtext_by_string
+                0x00033e00                indtext_by_string_default
+ .text          0x00033f00      0x2fc ./Lib/libbacnet.a(dcc.o)
+                0x00033f74                dcc_timer_seconds
+                0x00033f10                dcc_communication_enabled
+                0x00033f64                dcc_duration_seconds
+                0x00033f48                dcc_communication_initiation_disabled
+                0x00033ffc                dcc_encode_apdu
+                0x00033fb4                dcc_set_status_duration
+                0x000340b4                dcc_decode_service_request
+                0x00033f00                dcc_enable_status
+                0x00033f2c                dcc_communication_disabled
+ .text          0x000341fc      0x450 ./Lib/libbacnet.a(rp.o)
+                0x000343a8                rp_ack_encode_apdu_init
+                0x00034438                rp_ack_encode_apdu_object_property_end
+                0x000341fc                rp_encode_apdu
+                0x0003445c                rp_ack_encode_apdu
+                0x0003452c                rp_ack_decode_service_request
+                0x000342a0                rp_decode_service_request
+ .text          0x0003464c      0x4e8 ./Lib/libbacnet.a(tsm.o)
+                0x00034acc                tsm_invoke_id_free
+                0x00034aec                tsm_invoke_id_failed
+                0x00034740                tsm_next_free_invokeID
+                0x00034a90                tsm_free_invoke_id
+                0x000346fc                tsm_transaction_idle_count
+                0x00034804                tsm_set_confirmed_unsegmented_transaction
+                0x000349d8                tsm_timer_milliseconds
+                0x000348f8                tsm_get_transaction_pdu
+                0x000346c4                tsm_transaction_available
+ .text          0x00034b34      0x134 ./Lib/libbacnet.a(bacaddr.o)
+                0x00034ba0                bacnet_address_same
+                0x00034b34                bacnet_address_copy
+ .text          0x00034c68      0xa78 ./Lib/libbacnet.a(address.o)
+                0x00034d8c                address_remove_oldest
+                0x000350f4                address_set_device_TTL
+                0x00035588                address_count
+                0x00035490                address_add_binding
+                0x00034c68                address_match
+                0x00035388                address_bind_request
+                0x00035088                address_init_partial
+                0x00035050                address_init
+                0x00034d44                address_remove_device
+                0x00035684                address_cache_timer
+                0x00035518                address_get_by_index
+                0x00035260                address_add
+                0x000351ec                address_get_device_id
+                0x0003516c                address_get_by_device
+                0x000355c4                address_list_encode
+                0x00034e50                address_file_init
+ .text          0x000356e0     0x1988 ./Lib/libbacnet.a(bvlc.o)
+                0x00035aec                bvlc_encode_read_fdt
+                0x00036850                bvlc_receive
+                0x00035c94                bvlc_encode_original_unicast_npdu
+                0x00035864                bvlc_encode_write_bdt_init
+                0x00036614                bvlc_register_with_bbmd
+                0x00036e48                bvlc_send_pdu
+                0x00035c34                bvlc_encode_delete_fdt_entry
+                0x00035de0                bvlc_bacnet_to_internet_address
+                0x000356ec                bvlc_maintenance_timer
+                0x000358ac                bvlc_encode_read_bdt
+                0x00035d00                bvlc_encode_original_broadcast_npdu
+ .text          0x00037068      0x7f0 ./Lib/libbacnet.a(bip.o)
+                0x000370f4                bip_get_addr
+                0x0003714c                bip_get_port
+                0x00037104                bip_set_broadcast_addr
+                0x0003712c                bip_get_broadcast_addr
+                0x000377c4                bip_get_broadcast_address
+                0x00037088                bip_valid
+                0x00037068                bip_set_socket
+                0x00037384                bip_receive
+                0x0003713c                bip_set_port
+                0x000371ac                bip_send_pdu
+                0x00037078                bip_socket
+                0x000370cc                bip_set_addr
+                0x000370a0                bip_cleanup
+                0x0003773c                bip_get_my_address
+ .text          0x00037858      0x18c ./Lib/libbacnet.a(dlenv.o)
+                0x00037858                dlenv_init
+ .text          0x000379e4       0xcc ./Lib/libbacnet.a(noserv.o)
+                0x000379e4                handler_unrecognized_service
+ .text          0x00037ab0       0xf0 ./Lib/libbacnet.a(h_npdu.o)
+                0x00037ab0                npdu_handler
+ .text          0x00037ba0       0x94 ./Lib/libbacnet.a(h_whois.o)
+                0x00037ba0                handler_who_is
+ .text          0x00037c34      0x118 ./Lib/libbacnet.a(h_iam.o)
+                0x00037c34                handler_i_am_add
+                0x00037cfc                handler_i_am_bind
+ .text          0x00037d4c      0x318 ./Lib/libbacnet.a(h_rp.o)
+                0x00037d4c                handler_read_property_object_set
+                0x00037e38                handler_read_property
+                0x00037d74                Encode_Property_APDU
+ .text          0x00038064      0x100 ./Lib/libbacnet.a(s_iam.o)
+                0x00038064                iam_encode_pdu
+                0x000380f8                Send_I_Am
+ .text          0x00038164      0x174 ./Lib/libbacnet.a(s_rp.o)
+                0x00038164                Send_Read_Property_Request
+ .text          0x000382d8       0xc8 ./Lib/libbacnet.a(s_whois.o)
+                0x000382d8                Send_WhoIs
+ .text          0x000383a0      0x268 ./Lib/libbacnet.a(s_wp.o)
+                0x000383a0                Send_Write_Property_Request_Data
+                0x0003854c                Send_Write_Property_Request
+ .text          0x00038608      0xd60 ./Lib/libbacnet.a(device.o)
+                0x00038734                Device_Set_System_Status
+                0x000387bc                Device_Firmware_Revision
+                0x000388b4                Device_Segmentation_Supported
+                0x000388cc                Device_Set_Database_Revision
+                0x00038820                Device_Set_Description
+                0x000389ec                Device_Valid_Object_Name
+                0x00038780                Device_Set_Model_Name
+                0x00038744                Device_Vendor_Name
+                0x00038648                Device_Property_Lists
+                0x0003868c                Device_Set_Object_Instance_Number
+                0x00039364                Device_Init
+                0x00038af8                Device_Encode_Property_APDU
+                0x00039120                Device_Write_Property
+                0x000388bc                Device_Database_Revision
+                0x00038608                Device_Object_Function_Set
+                0x000387d8                Device_Set_Application_Software_Version
+                0x0003867c                Device_Object_Instance_Number
+                0x00038764                Device_Set_Vendor_Identifier
+                0x00038774                Device_Model_Name
+                0x000388dc                Device_Object_List_Count
+                0x00038724                Device_System_Status
+                0x000386e8                Device_Set_Object_Name
+                0x000388ac                Device_Protocol_Revision
+                0x00038814                Device_Description
+                0x000388a4                Device_Protocol_Version
+                0x000386dc                Device_Object_Name
+                0x00038754                Device_Vendor_Identifier
+                0x00038a88                Device_Valid_Object_Id
+                0x000387cc                Device_Application_Software_Version
+                0x0003885c                Device_Location
+                0x000386ac                Device_Valid_Object_Instance_Number
+                0x00038868                Device_Set_Location
+                0x00038924                Device_Object_List_Identifier
+ .text          0x00039368      0x460 ./Lib/libbacnet.a(npdu.o)
+                0x000395b4                npdu_decode
+                0x00039578                npdu_encode_npdu_data
+                0x00039368                npdu_copy_data
+                0x000393b4                npdu_encode_pdu
+ .text          0x000397c8      0x1ec ./Lib/libbacnet.a(iam.o)
+                0x000397c8                iam_encode_apdu
+                0x00039844                iam_decode_service_request
+ .text          0x000399b4      0x16c ./Lib/libbacnet.a(whois.o)
+                0x00039a48                whois_decode_service_request
+                0x000399b4                whois_encode_apdu
+ .text          0x00039b20      0x2f8 ./Lib/libbacnet.a(wp.o)
+                0x00039c38                wp_decode_service_request
+                0x00039b20                wp_encode_apdu
+ .text          0x00039e18       0x68 ./Lib/libbacnet.a(abort.o)
+                0x00039e54                abort_decode_service_request
+                0x00039e18                abort_encode_apdu
+ .text          0x00039e80       0x58 ./Lib/libbacnet.a(reject.o)
+                0x00039eac                reject_decode_service_request
+                0x00039e80                reject_encode_apdu
+ .text          0x00039ed8      0x174 ./Lib/libbacnet.a(bacerror.o)
+                0x00039f2c                bacerror_decode_error_class_and_code
+                0x00039ff4                bacerror_decode_service_request
+                0x00039ed8                bacerror_encode_apdu
+ .text          0x0003a04c      0x2e0 ./Lib/libbacnet.a(bip-init.o)
+                0x0003a04c                bip_getaddrbyname
+                0x0003a218                bip_init
+ .text          0x0003a32c      0x824 ./Lib/libbacnet.a(h_cov.o)
+                0x0003a850                handler_cov_task
+                0x0003a97c                handler_cov_subscribe
+                0x0003a484                handler_cov_encode_subscriptions
+                0x0003a4f8                handler_cov_init
+ .text          0x0003ab50      0x650 ./Lib/libbacnet.a(bi.o)
+                0x0003abe0                Binary_Input_Instance_To_Index
+                0x0003ac78                Binary_Input_Encode_Value_List
+                0x0003aba0                Binary_Input_Init
+                0x0003ab9c                Binary_Input_Index_To_Instance
+                0x0003b090                Binary_Input_Write_Property
+                0x0003ac58                Binary_Input_Change_Of_Value_Clear
+                0x0003ab84                Binary_Input_Valid_Instance
+                0x0003ae00                Binary_Input_Encode_Property_APDU
+                0x0003ab94                Binary_Input_Count
+                0x0003adcc                Binary_Input_Name
+                0x0003ac34                Binary_Input_Change_Of_Value
+                0x0003ab50                Binary_Input_Property_Lists
+ .text          0x0003b1a0      0xad4 ./Lib/libbacnet.a(cov.o)
+                0x0003b728                cov_subscribe_decode_service_request
+                0x0003b334                ucov_notify_encode_apdu
+                0x0003b370                cov_notify_decode_service_request
+                0x0003b8b0                cov_subscribe_property_encode_adpu
+                0x0003b9e0                cov_subscribe_property_decode_service_request
+                0x0003b2d4                ccov_notify_encode_apdu
+                0x0003b66c                cov_subscribe_encode_adpu
+ .text          0x0003bc74       0x40 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+ *(.gnu.warning)
+ *(.glue_7t)
+ *(.glue_7)
+
+.fini           0x0003bcb4        0xc
+ *(.fini)
+ .fini          0x0003bcb4        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x0003bcb4                _fini
+ .fini          0x0003bcb8        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ .fini          0x0003bcbc        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+                0x0003bcc0                PROVIDE (__etext, .)
+                0x0003bcc0                PROVIDE (_etext, .)
+                0x0003bcc0                PROVIDE (etext, .)
+
+.rodata         0x0003bcc0     0xa1dc
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x0003bcc0        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+                0x0003bcc0                _IO_stdin_used
+ .rodata.str1.4
+                0x0003bcc4      0xb45 Src/main.o
+                                0xb64 (size before relaxing)
+ *fill*         0x0003c809        0x3 00
+ .rodata        0x0003c80c       0x1c Src/main.o
+ .rodata        0x0003c828      0x200 Src/crc16.o
+ .rodata.str1.4
+                0x0003ca28       0xd7 Src/net32_mgr.o
+                                 0xdc (size before relaxing)
+ *fill*         0x0003caff        0x1 00
+ .rodata        0x0003cb00       0x30 Src/point_observer.o
+ .rodata.str1.4
+                0x0003cb30      0x1ad Src/point_observer.o
+                                0x1bc (size before relaxing)
+ *fill*         0x0003ccdd        0x3 00
+ .rodata.str1.4
+                0x0003cce0       0x23 Src/point_handler.o
+                                 0x48 (size before relaxing)
+ *fill*         0x0003cd03        0x1 00
+ .rodata.str1.4
+                0x0003cd04      0x4cf Src/point_mgr.o
+                                0x550 (size before relaxing)
+ *fill*         0x0003d1d3        0x1 00
+ .rodata.str1.4
+                0x0003d1d4      0xfb2 Src/cmd_handler.o
+                                0xff8 (size before relaxing)
+ *fill*         0x0003e186        0x2 00
+ .rodata.str1.4
+                0x0003e188       0xf5 Src/apg_mgr.o
+                                0x110 (size before relaxing)
+ *fill*         0x0003e27d        0x3 00
+ .rodata.str1.4
+                0x0003e280      0x154 Src/demo_handler.o
+ .rodata        0x0003e3d4       0x10 Src/elba_mgr.o
+                0x0003e3d4                g_chElbaHead
+                0x0003e3dc                g_chElbaTail
+ .rodata.str1.4
+                0x0003e3e4      0x2ea Src/elba_mgr.o
+                                0x350 (size before relaxing)
+ *fill*         0x0003e6ce        0x2 00
+ .rodata.str1.4
+                0x0003e6d0      0x4a2 Src/log_mgr.o
+                                0x4c0 (size before relaxing)
+ *fill*         0x0003eb72        0x2 00
+ .rodata.str1.4
+                0x0003eb74      0x3d4 Src/modbus_mgr.o
+                                0x414 (size before relaxing)
+ .rodata.str1.4
+                0x0003ef48      0x206 Src/subio_mgr.o
+                                0x21c (size before relaxing)
+ *fill*         0x0003f14e        0x2 00
+ .rodata.str1.4
+                0x0003f150       0xbc Src/dbsvr_mgr.o
+                                0x130 (size before relaxing)
+ .rodata.str1.4
+                0x0003f20c       0xea Src/userver_mgr.o
+                                 0xec (size before relaxing)
+ *fill*         0x0003f2f6        0x2 00
+ .rodata.str1.4
+                0x0003f2f8       0x54 Src/watchdog.o
+                                 0x64 (size before relaxing)
+ .rodata.str1.4
+                0x0003f34c       0x77 Iface/BACNET/writeprop.o
+                                 0x7c (size before relaxing)
+ *fill*         0x0003f3c3        0x1 00
+ .rodata.str1.4
+                0x0003f3c4      0x2cb Iface/BACNET/bacnet_manager.o
+                                0x2fc (size before relaxing)
+ *fill*         0x0003f68f        0x1 00
+ .rodata        0x0003f690      0x400 Iface/BACNET/bacnet_manager.o
+ .rodata        0x0003fa90      0x200 Iface/IFACE_DNP/iface_dnp.o
+ .rodata.str1.4
+                0x0003fc90      0x95a Iface/IFACE_DNP/iface_dnp.o
+                                0x9a8 (size before relaxing)
+ *fill*         0x000405ea        0x2 00
+ .rodata.str1.4
+                0x000405ec      0x142 Iface/IFACE_DNP/iface_net32_to_dnp.o
+                                0x144 (size before relaxing)
+ *fill*         0x0004072e        0x2 00
+ .rodata.str1.4
+                0x00040730      0x14f Iface/IFACE_GHP/ghp_WebSvr.o
+                                0x150 (size before relaxing)
+ *fill*         0x0004087f        0x1 00
+ .rodata.str1.4
+                0x00040880       0xe3 Iface/IFACE_GHP/ghp_Web2Svr.o
+                                0x15c (size before relaxing)
+ *fill*         0x00040963        0x1 00
+ .rodata.str1.4
+                0x00040964      0x31e Iface/IFACE_GHP/ghp_ScheduleSvr.o
+                                0x374 (size before relaxing)
+ *fill*         0x00040c82        0x2 00
+ .rodata.str1.4
+                0x00040c84      0xdec Iface/IFACE_GHP/ghp_app.o
+                                0xf90 (size before relaxing)
+ .rodata        0x00041a70       0x20 Iface/IFACE_GHP/ghp_app.o
+ .rodata.str1.4
+                0x00041a90      0x301 Iface/IFACE_HANTEC/iface_hantec.o
+                                0x3c0 (size before relaxing)
+ *fill*         0x00041d91        0x3 00
+ .rodata.str1.4
+                0x00041d94       0xe6 ./Lib/libbacnet.a(bacapp.o)
+                                 0xf4 (size before relaxing)
+ *fill*         0x00041e7a        0x2 00
+ .rodata.str1.4
+                0x00041e7c     0x356c ./Lib/libbacnet.a(bactext.o)
+                               0x3778 (size before relaxing)
+ .rodata        0x000453e8       0x34 ./Lib/libbacnet.a(datetime.o)
+ .rodata.str1.4
+                0x0004541c       0x32 ./Lib/libbacnet.a(address.o)
+                                 0x38 (size before relaxing)
+ *fill*         0x0004544e        0x2 00
+ .rodata        0x00045450      0x100 ./Lib/libbacnet.a(address.o)
+ .rodata.str1.4
+                0x00045550      0x2e7 ./Lib/libbacnet.a(bvlc.o)
+                                0x2e8 (size before relaxing)
+ *fill*         0x00045837        0x1 00
+ .rodata.str1.4
+                0x00045838       0x56 ./Lib/libbacnet.a(bip.o)
+                                 0x58 (size before relaxing)
+ *fill*         0x0004588e        0x2 00
+ .rodata.str1.4
+                0x00045890       0xc1 ./Lib/libbacnet.a(dlenv.o)
+                                 0xc4 (size before relaxing)
+ *fill*         0x00045951        0x3 00
+ .rodata.str1.4
+                0x00045954       0x2d ./Lib/libbacnet.a(noserv.o)
+                                 0x30 (size before relaxing)
+ *fill*         0x00045981        0x3 00
+ .rodata.str1.4
+                0x00045984       0x73 ./Lib/libbacnet.a(h_npdu.o)
+                                 0x74 (size before relaxing)
+ *fill*         0x000459f7        0x1 00
+ .rodata.str1.4
+                0x000459f8       0x3b ./Lib/libbacnet.a(h_iam.o)
+                                 0x40 (size before relaxing)
+ *fill*         0x00045a33        0x1 00
+ .rodata.str1.4
+                0x00045a34       0xd6 ./Lib/libbacnet.a(h_rp.o)
+                                 0xd8 (size before relaxing)
+ *fill*         0x00045b0a        0x2 00
+ .rodata.str1.4
+                0x00045b0c       0x21 ./Lib/libbacnet.a(s_iam.o)
+                                 0x24 (size before relaxing)
+ *fill*         0x00045b2d        0x3 00
+ .rodata.str1.4
+                0x00045b30       0x75 ./Lib/libbacnet.a(s_rp.o)
+                                 0x78 (size before relaxing)
+ *fill*         0x00045ba5        0x3 00
+ .rodata.str1.4
+                0x00045ba8       0x25 ./Lib/libbacnet.a(s_whois.o)
+                                 0x28 (size before relaxing)
+ *fill*         0x00045bcd        0x3 00
+ .rodata.str1.4
+                0x00045bd0       0x76 ./Lib/libbacnet.a(s_wp.o)
+                                 0x78 (size before relaxing)
+ *fill*         0x00045c46        0x2 00
+ .rodata        0x00045c48       0x7c ./Lib/libbacnet.a(device.o)
+ .rodata.str1.4
+                0x00045cc4       0x1c ./Lib/libbacnet.a(device.o)
+ .rodata.str1.4
+                0x00045ce0        0x6 ./Lib/libbacnet.a(version.o)
+                                  0x8 (size before relaxing)
+ *fill*         0x00045ce6        0x2 00
+ .rodata.str1.4
+                0x00045ce8       0x59 ./Lib/libbacnet.a(bip-init.o)
+                                 0x5c (size before relaxing)
+ *fill*         0x00045d41        0x3 00
+ .rodata.str1.4
+                0x00045d44      0x118 ./Lib/libbacnet.a(h_cov.o)
+ .rodata        0x00045e5c       0x30 ./Lib/libbacnet.a(bi.o)
+ .rodata.str1.4
+                0x00045e8c       0x10 ./Lib/libbacnet.a(bi.o)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+                0x00045e9c                . = (ALIGN (0x8000) - ((0x8000 - .) & 0x7fff))
+                0x0004e000                . = (0x8000 DATA_SEGMENT_ALIGN 0x1000)
+                0x0004e000                . = ALIGN (0x4)
+                0x0004e000                PROVIDE (__preinit_array_start, .)
+
+.preinit_array
+ *(.preinit_array)
+                0x0004e000                PROVIDE (__preinit_array_end, .)
+                0x0004e000                PROVIDE (__init_array_start, .)
+
+.init_array
+ *(.init_array)
+                0x0004e000                PROVIDE (__init_array_end, .)
+                0x0004e000                PROVIDE (__fini_array_start, .)
+
+.fini_array
+ *(.fini_array)
+                0x0004e000                PROVIDE (__fini_array_end, .)
+
+.data           0x0004e000     0x1ac0
+                0x0004e000                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0004e000        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+                0x0004e000                data_start
+ .data          0x0004e004        0x8 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+                0x0004e004                __dso_handle
+ .data          0x0004e00c       0x40 Src/main.o
+                0x0004e00c                g_chDfnTypeName
+ .data          0x0004e04c        0x4 Src/elba_mgr.o
+                0x0004e04c                gc_elba_conntecion_flag
+ .data          0x0004e050        0x4 Src/subio_mgr.o
+                0x0004e050                g_subiotest
+ .data          0x0004e054        0xc Iface/BACNET/writeprop.o
+ .data          0x0004e060       0x10 Iface/BACNET/bacnet_manager.o
+                0x0004e06c                inchun_seabu
+ .data          0x0004e070        0x8 Iface/IFACE_DNP/iface_dnp.o
+                0x0004e070                unsol_seq
+                0x0004e074                server_socket
+ .data          0x0004e078       0xa4 ./Lib/libbacnet.a(apdu.o)
+ .data          0x0004e11c     0x1910 ./Lib/libbacnet.a(bactext.o)
+                0x0004f92c                bacnet_event_state_names
+                0x0004ee5c                bacnet_engineering_unit_names
+                0x0004f95c                bacnet_binary_present_value_names
+                0x0004f884                bacnet_day_of_week_names
+                0x0004f4ac                bacnet_abort_reason_names
+                0x0004f844                bacnet_week_of_month_names
+                0x0004e124                bacnet_confirmed_service_names
+                0x0004f454                bacnet_reject_reason_names
+                0x0004f4dc                bacnet_error_class_names
+                0x0004f90c                bacnet_event_transition_names
+                0x0004e434                bacnet_property_names
+                0x0004f7c4                bacnet_month_names
+                0x0004f51c                bacnet_error_code_names
+                0x0004fa04                bacnet_segmentation_names
+                0x0004f974                bacnet_reliability_names
+                0x0004f9d4                bacnet_device_status_names
+                0x0004e2fc                bacnet_object_type_names
+                0x0004e21c                bacnet_unconfirmed_service_names
+                0x0004f8cc                bacnet_days_of_week_names
+                0x0004e274                bacnet_application_tag_names
+ .data          0x0004fa2c        0x1 ./Lib/libbacnet.a(tsm.o)
+ *fill*         0x0004fa2d        0x3 00
+ .data          0x0004fa30        0x4 ./Lib/libbacnet.a(address.o)
+ .data          0x0004fa34        0x8 ./Lib/libbacnet.a(bip.o)
+ .data          0x0004fa3c       0x60 ./Lib/libbacnet.a(device.o)
+ .data          0x0004fa9c        0x4 ./Lib/libbacnet.a(version.o)
+                0x0004fa9c                BACnet_Version
+ .data          0x0004faa0       0x20 ./Lib/libbacnet.a(bi.o)
+
+.data1
+ *(.data1)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.eh_frame       0x0004fac0        0x4
+ *(.eh_frame)
+ .eh_frame      0x0004fac0        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.dynamic        0x0004fac4       0xe0
+ *(.dynamic)
+ .dynamic       0x0004fac4       0xe0 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x0004fac4                _DYNAMIC
+
+.ctors          0x0004fba4        0x8
+ *crtbegin*.o(.ctors)
+ *(EXCLUDE_FILE(*crtend*.o) .ctors)
+ .ctors         0x0004fba4        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ *(SORT(.ctors.*))
+ *(.ctors)
+ .ctors         0x0004fba8        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+
+.dtors          0x0004fbac        0x8
+ *crtbegin*.o(.dtors)
+ *(EXCLUDE_FILE(*crtend*.o) .dtors)
+ .dtors         0x0004fbac        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ *(SORT(.dtors.*))
+ *(.dtors)
+ .dtors         0x0004fbb0        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+
+.jcr            0x0004fbb4        0x4
+ *(.jcr)
+ .jcr           0x0004fbb4        0x4 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+
+.got            0x0004fbb8      0x1a0
+ *(.got.plt)
+ .got.plt       0x0004fbb8      0x18c /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x0004fbb8                _GLOBAL_OFFSET_TABLE_
+ *(.got)
+ .got           0x0004fd44       0x14 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x0004fd58                _edata = .
+                0x0004fd58                PROVIDE (edata, .)
+                0x0004fd58                __bss_start = .
+                0x0004fd58                __bss_start__ = .
+
+.bss            0x0004fd58  0x322d6cc
+ *(.dynbss)
+ .dynbss        0x0004fd58        0x8 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+                0x0004fd58                stdout@@GLIBC_2.0
+                0x0004fd5c                stderr@@GLIBC_2.0
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0004fd60        0x1 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ *fill*         0x0004fd61        0x3 00
+ .bss           0x0004fd64      0x5a4 Src/main.o
+                0x0004fddc                bacnetAccess_mutex
+                0x0004fdac                fileAccess_mutex
+                0x0004fe70                g_nCalStatus
+                0x0004fe74                g_nCalGrp
+                0x0004fe0c                schedule_mutex
+                0x0004fe6c                g_nCalReady
+                0x0004fe78                g_nCalType
+                0x0004fe80                bacnetObjCnt
+                0x0004fd94                pointTable_mutex
+                0x0004fdc4                bacnetQ_mutex
+                0x0004fe24                plcQ_mutex
+                0x0004fd7c                net32Q_mutex
+                0x0004fdf4                bacnetMessageQ_mutex
+                0x0004fe3c                ccmsQ_mutex
+                0x0004fe84                g_nModeCCMS
+                0x0004fe7c                g_nMultiDdcFlag
+                0x0004fd64                elbaQ_mutex
+                0x0004fe54                uclientQ_mutex
+ .bss           0x00050308        0x8 Src/net32_mgr.o
+                0x00050309                dbg_mtr_noq
+                0x00050308                dbg_mtr_niq
+                0x0005030c                g_nViewNet32
+ .bss           0x00050310        0x4 Src/point_observer.o
+                0x00050310                pointObserverDbg
+ .bss           0x00050314       0x10 Src/point_mgr.o
+                0x00050318                g_nStayVO
+                0x0005031c                g_nPntLog
+                0x00050320                g_nFactoryResetCnt
+                0x00050314                gn_adc_dbg
+ .bss           0x00050324      0x508 Src/demo_handler.o
+ .bss           0x0005082c        0xc Src/elba_mgr.o
+                0x00050830                gc_dbg_rxmsg
+                0x0005082c                gc_dbg_txmsg
+                0x00050834                gc_view_elba
+ .bss           0x00050838        0x4 Src/subio_mgr.o
+                0x00050838                g_subio_dbg
+ .bss           0x0005083c        0x2 Src/dbsvr_mgr.o
+                0x0005083c                g_wSendPcmId
+ *fill*         0x0005083e        0x2 00
+ .bss           0x00050840    0x17904 Iface/BACNET/writeprop.o
+ .bss           0x00068144      0x608 Iface/BACNET/bacnet_manager.o
+                0x00068144                BAC_DbgShow
+ .bss           0x0006874c      0x154 Iface/IFACE_DNP/iface_dnp.o
+                0x0006874c                debug_dnp_tx
+                0x00068758                nDnpClientCnt
+                0x00068754                link_status
+                0x0006875c                dnpObserver_mutex
+                0x00068750                debug_dnp_rx
+ .bss           0x000688a0        0x4 Iface/IFACE_DNP/iface_net32_to_dnp.o
+ .bss           0x000688a4        0x8 Iface/IFACE_GHP/ghp_WebSvr.o
+                0x000688a4                g_nDataCount
+                0x000688a8                g_nTotalLength
+ .bss           0x000688ac        0x4 Iface/IFACE_GHP/ghp_Web2Svr.o
+                0x000688ac                g_Web2DataCount
+ .bss           0x000688b0        0x4 Iface/IFACE_GHP/ghp_ScheduleSvr.o
+                0x000688b0                g_msgWr
+ .bss           0x000688b4       0x64 Iface/IFACE_GHP/ghp_app.o
+                0x000688ec                GHP_WINDDIRECTION_PCM
+                0x000688fc                GHP_GROUP_DATA_WEEK_PCM
+                0x000688e0                GHP_GROUP_PCM
+                0x00068910                GHP_UNIT_RUNTIME_PCM
+                0x000688f4                GHP_ERROR_NUM_PCM
+                0x000688c4                g_dbgShow_sched
+                0x00068914                g_limitTime
+                0x000688f8                GHP_GROUP_STATUS_PCM
+                0x000688f0                GHP_ERROR_PCM
+                0x000688e4                GHP_GROUP_MODE_PCM
+                0x000688c0                g_dbgShow
+                0x000688d8                GHP_MODE_PCM
+                0x000688b8                g_unitCnt
+                0x000688d4                GHP_SET_TEMP_PCM
+                0x000688bc                g_sddcNum
+                0x0006890c                GHP_RUNTIME_PCM
+                0x000688dc                GHP_TEMP_PCM
+                0x000688c8                text_number
+                0x00068900                GHP_GROUP_DATA1_PCM
+                0x000688e8                GHP_WINDSPEED_PCM
+                0x000688cc                GHP_ONOFF_PCM
+                0x000688d0                GHP_ONOFF_FAN_PCM
+                0x000688b4                unit
+                0x00068908                GHP_MODE_STATUS_PCM
+                0x00068904                GHP_GROUP_DATA2_PCM
+ .bss           0x00068918        0x8 Iface/IFACE_HANTEC/iface_hantec.o
+                0x0006891c                g_nSlaveOffet
+                0x00068918                g_nCount
+ .bss           0x00068920      0x19c ./Lib/libbacnet.a(apdu.o)
+ .bss           0x00068abc        0xc ./Lib/libbacnet.a(bacapp.o)
+ .bss           0x00068ac8        0x8 ./Lib/libbacnet.a(dcc.o)
+ .bss           0x00068ad0    0x60dec ./Lib/libbacnet.a(tsm.o)
+ .bss           0x000c98bc     0x23dc ./Lib/libbacnet.a(address.o)
+ .bss           0x000cbc98     0x1014 ./Lib/libbacnet.a(bvlc.o)
+                0x000cbc98                BVLC_Result_Code
+ .bss           0x000cccac        0x8 ./Lib/libbacnet.a(bip.o)
+ .bss           0x000cccb4     0x25bc ./Lib/libbacnet.a(h_rp.o)
+ .bss           0x000cf270     0x2ffc ./Lib/libbacnet.a(device.o)
+ .bss           0x000d226c        0x1 ./Lib/libbacnet.a(bip-init.o)
+                0x000d226c                BIP_Debug
+ .bss           0x000d226d      0x5de ./Lib/libbacnet.a(txbuf.o)
+                0x000d226d                Handler_Transmit_Buffer
+ *fill*         0x000d284b        0x1 00
+ .bss           0x000d284c      0x600 ./Lib/libbacnet.a(h_cov.o)
+ .bss           0x000d2e4c       0x24 ./Lib/libbacnet.a(bi.o)
+ *(COMMON)
+ COMMON         0x000d2e70  0x218da4c Src/main.o
+                                  0x0 (size before relaxing)
+                0x000d2e70                g_pCal
+                0x000d2e74                g_cNode
+                0x000d2e94                g_pPtbl
+                0x000d2e98                ghp_message_queue
+                0x000deea0                g_nMyPcm
+                0x000deea4                diPtbl
+                0x004deea4                g_schedule
+                0x004e1334                aiPtbl
+                0x00ce1334                bacnet_message_queue
+                0x00ced33c                bacnetFile
+                0x00ded33c                uclient_queue
+                0x00df9344                Kisuksa_Data
+                0x00df9380                Dong_Data
+                0x00df9454                apg_queue
+                0x00e0545c                g_UnitData
+                0x00e1075c                g_fExPtbl
+                0x00e1875c                net32_queue
+                0x00e24764                DNP_ai_point
+                0x00e28764                plcData
+                0x00e2c764                debug_plc_tx
+                0x00e2c768                ccms_queue
+                0x00e38770                DNP_di_point
+                0x00e3a770                DNP_do_point
+                0x00e3c770                msoPtbl
+                0x0123c770                DNP_ao_point
+                0x01240770                g_fPreExPtbl
+                0x01248770                msiPtbl
+                0x01648770                elba_queue
+                0x01654778                rt_param
+                0x0165477c                Dong_Outdoor_Data
+                0x01654820                aoPtbl
+                0x01e54820                rt_attributes
+                0x01e54824                doPtbl
+                0x02254824                g_time
+                0x02254830                plc_message_queue
+                0x02260838                g_nFileAccess
+                0x022608b8                debug_plc_rx
+ COMMON         0x022608bc        0xc Src/net32_mgr.o
+                                  0x0 (size before relaxing)
+                0x022608bc                g_net32_status
+ COMMON         0x022608c8       0x80 Src/point_mgr.o
+                                  0x0 (size before relaxing)
+                0x022608c8                g_nPntValue
+ COMMON         0x02260948     0x2000 Src/cmd_handler.o
+                                  0x0 (size before relaxing)
+                0x02260948                cmd_tx_msg
+                0x02261948                cmd_rx_msg
+ COMMON         0x02262948        0xc Src/elba_mgr.o
+                                  0x0 (size before relaxing)
+                0x02262948                g_ElbaStatus
+ COMMON         0x02262954     0x2800 Src/modbus_mgr.o
+                                  0x0 (size before relaxing)
+                0x02262954                nVal
+                0x02262d54                modbusSvr_rx_msg
+                0x02263d54                modbusSvr_tx_msg
+                0x02264d54                g_fVal
+ COMMON         0x02265154     0x2010 Src/subio_mgr.o
+                                  0x0 (size before relaxing)
+                0x02265154                subio_txmsg
+                0x02266154                g_nSubioAliveChk
+                0x02266164                subio_rxmsg
+ COMMON         0x02267164        0xc Src/watchdog.o
+                                  0x0 (size before relaxing)
+                0x02267164                g_pList
+                0x02267168                g_pPrevList
+                0x0226716c                g_nWatchdogCount
+ COMMON         0x02267170  0x1000000 Iface/BACNET/writeprop.o
+                                  0x0 (size before relaxing)
+                0x02267170                doPrePtbl
+                0x02667170                msoPrePtbl
+                0x02a67170                aoPrePtbl
+ COMMON         0x03267170       0x1e Iface/IFACE_DNP/iface_dnp.o
+                                  0x0 (size before relaxing)
+                0x03267170                dnp_master_addr
+                0x03267172                trans_seq
+                0x03267173                app_seq
+                0x03267174                DNP_BUF_CNT
+                0x03267178                dnp_dl_control
+                0x0326717c                svr_dnp
+                0x0326718c                dnp_slave_addr
+ *fill*         0x0326718e        0x2 00
+ COMMON         0x03267190     0x4056 Iface/IFACE_GHP/ghp_WebSvr.o
+                                  0x0 (size before relaxing)
+                0x03267190                g_GHPWeb_Pcm
+                0x03267990                web_tx_msg
+                0x03268cba                data_val
+                0x03268ebc                g_GHPWeb_Pno
+                0x032696bc                g_GHPWeb_fVal
+                0x03269ebc                web_rx_msg
+ *fill*         0x0326b1e6        0x2 00
+ COMMON         0x0326b1e8     0x4054 Iface/IFACE_GHP/ghp_Web2Svr.o
+                                  0x0 (size before relaxing)
+                0x0326b1e8                web2_tx_msg
+                0x0326c512                web2_rx_msg
+                0x0326d83c                g_Web2Fval
+                0x0326e03c                g_Web2Data
+                0x0326e23c                g_Web2_Pno
+                0x0326ea3c                g_Web2_Pcm
+ COMMON         0x0326f23c     0x4ca8 Iface/IFACE_GHP/ghp_ScheduleSvr.o
+                                  0x0 (size before relaxing)
+                0x0326f23c                sched_rx_msg
+                0x03270566                message
+                0x03271890                sched_tx_msg
+                0x03272bba                dbg_msg
+ COMMON         0x03273ee4     0x9534 Iface/IFACE_GHP/ghp_app.o
+                                  0x0 (size before relaxing)
+                0x03273ee4                rxbuf
+                0x032742e4                g_pDongInfo
+                0x032742e8                g_CntHaksaInit
+                0x032742ec                g_iPollState
+                0x032742f0                g_iUart2Fd
+                0x032742f4                prePtbl
+                0x0327c2f4                g_schedFileData
+                0x0327d010                g_PollEvents
+                0x0327d018                txbuf
+ COMMON         0x0327d418        0xc ./Lib/libbacnet.a(device.o)
+                                  0x0 (size before relaxing)
+                0x0327d418                Local_Date
+                0x0327d420                Local_Time
+                0x0327d424                . = ALIGN (0x4)
+                0x0327d424                . = ALIGN (0x4)
+                0x0327d424                _end = .
+                0x0327d424                _bss_end__ = .
+                0x0327d424                __bss_end__ = .
+                0x0327d424                __end__ = .
+                0x0327d424                PROVIDE (end, .)
+                0x0327d424                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x534
+ *(.comment)
+ .comment       0x00000000       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crt1.o
+ .comment       0x00000012       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .comment       0x00000024       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtbegin.o
+ .comment       0x00000036       0x12 Src/main.o
+ .comment       0x00000048       0x12 Src/crc16.o
+ .comment       0x0000005a       0x12 Src/queue_handler.o
+ .comment       0x0000006c       0x12 Src/net32_mgr.o
+ .comment       0x0000007e       0x12 Src/point_observer.o
+ .comment       0x00000090       0x12 Src/point_handler.o
+ .comment       0x000000a2       0x12 Src/point_mgr.o
+ .comment       0x000000b4       0x12 Src/cmd_handler.o
+ .comment       0x000000c6       0x12 Src/apg_mgr.o
+ .comment       0x000000d8       0x12 Src/iface_handler.o
+ .comment       0x000000ea       0x12 Src/demo_handler.o
+ .comment       0x000000fc       0x12 Src/elba_mgr.o
+ .comment       0x0000010e       0x12 Src/log_mgr.o
+ .comment       0x00000120       0x12 Src/modbus_mgr.o
+ .comment       0x00000132       0x12 Src/subio_mgr.o
+ .comment       0x00000144       0x12 Src/dbsvr_mgr.o
+ .comment       0x00000156       0x12 Src/userver_mgr.o
+ .comment       0x00000168       0x12 Src/uclient_mgr.o
+ .comment       0x0000017a       0x12 Src/watchdog.o
+ .comment       0x0000018c       0x12 Iface/BACNET/writeprop.o
+ .comment       0x0000019e       0x12 Iface/BACNET/bacnet_manager.o
+ .comment       0x000001b0       0x12 Iface/IFACE_DNP/iface_dnp.o
+ .comment       0x000001c2       0x12 Iface/IFACE_DNP/iface_net32_to_dnp.o
+ .comment       0x000001d4       0x12 Iface/IFACE_GHP/ghp_WebSvr.o
+ .comment       0x000001e6       0x12 Iface/IFACE_GHP/ghp_Web2Svr.o
+ .comment       0x000001f8       0x12 Iface/IFACE_GHP/ghp_ScheduleSvr.o
+ .comment       0x0000020a       0x12 Iface/IFACE_GHP/ghp_app.o
+ .comment       0x0000021c       0x12 Iface/IFACE_HANTEC/iface_hantec.o
+ .comment       0x0000022e       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/libc_nonshared.a(elf-init.oST)
+ .comment       0x00000240       0x12 ./Lib/libbacnet.a(apdu.o)
+ .comment       0x00000252       0x12 ./Lib/libbacnet.a(bacdcode.o)
+ .comment       0x00000264       0x12 ./Lib/libbacnet.a(bacint.o)
+ .comment       0x00000276       0x12 ./Lib/libbacnet.a(bacreal.o)
+ .comment       0x00000288       0x12 ./Lib/libbacnet.a(bacstr.o)
+ .comment       0x0000029a       0x12 ./Lib/libbacnet.a(bacapp.o)
+ .comment       0x000002ac       0x12 ./Lib/libbacnet.a(bactext.o)
+ .comment       0x000002be       0x12 ./Lib/libbacnet.a(datetime.o)
+ .comment       0x000002d0       0x12 ./Lib/libbacnet.a(indtext.o)
+ .comment       0x000002e2       0x12 ./Lib/libbacnet.a(dcc.o)
+ .comment       0x000002f4       0x12 ./Lib/libbacnet.a(rp.o)
+ .comment       0x00000306       0x12 ./Lib/libbacnet.a(tsm.o)
+ .comment       0x00000318       0x12 ./Lib/libbacnet.a(bacaddr.o)
+ .comment       0x0000032a       0x12 ./Lib/libbacnet.a(address.o)
+ .comment       0x0000033c       0x12 ./Lib/libbacnet.a(bvlc.o)
+ .comment       0x0000034e       0x12 ./Lib/libbacnet.a(bip.o)
+ .comment       0x00000360       0x12 ./Lib/libbacnet.a(dlenv.o)
+ .comment       0x00000372       0x12 ./Lib/libbacnet.a(noserv.o)
+ .comment       0x00000384       0x12 ./Lib/libbacnet.a(h_npdu.o)
+ .comment       0x00000396       0x12 ./Lib/libbacnet.a(h_whois.o)
+ .comment       0x000003a8       0x12 ./Lib/libbacnet.a(h_iam.o)
+ .comment       0x000003ba       0x12 ./Lib/libbacnet.a(h_rp.o)
+ .comment       0x000003cc       0x12 ./Lib/libbacnet.a(s_iam.o)
+ .comment       0x000003de       0x12 ./Lib/libbacnet.a(s_rp.o)
+ .comment       0x000003f0       0x12 ./Lib/libbacnet.a(s_whois.o)
+ .comment       0x00000402       0x12 ./Lib/libbacnet.a(s_wp.o)
+ .comment       0x00000414       0x12 ./Lib/libbacnet.a(device.o)
+ .comment       0x00000426       0x12 ./Lib/libbacnet.a(npdu.o)
+ .comment       0x00000438       0x12 ./Lib/libbacnet.a(iam.o)
+ .comment       0x0000044a       0x12 ./Lib/libbacnet.a(whois.o)
+ .comment       0x0000045c       0x12 ./Lib/libbacnet.a(wp.o)
+ .comment       0x0000046e       0x12 ./Lib/libbacnet.a(abort.o)
+ .comment       0x00000480       0x12 ./Lib/libbacnet.a(reject.o)
+ .comment       0x00000492       0x12 ./Lib/libbacnet.a(bacerror.o)
+ .comment       0x000004a4       0x12 ./Lib/libbacnet.a(version.o)
+ .comment       0x000004b6       0x12 ./Lib/libbacnet.a(bip-init.o)
+ .comment       0x000004c8       0x12 ./Lib/libbacnet.a(txbuf.o)
+ .comment       0x000004da       0x12 ./Lib/libbacnet.a(h_cov.o)
+ .comment       0x000004ec       0x12 ./Lib/libbacnet.a(bi.o)
+ .comment       0x000004fe       0x12 ./Lib/libbacnet.a(cov.o)
+ .comment       0x00000510       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/crtend.o
+ .comment       0x00000522       0x12 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xb8
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x30 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .debug_aranges
+                0x00000030       0x20 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+ .debug_aranges
+                0x00000050       0x20 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+ .debug_aranges
+                0x00000070       0x20 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+ .debug_aranges
+                0x00000090       0x28 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000      0x411
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000       0xc3 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .debug_info    0x000000c3       0xd9 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+ .debug_info    0x0000019c       0xd9 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+ .debug_info    0x00000275       0xd9 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+ .debug_info    0x0000034e       0xc3 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.debug_abbrev   0x00000000       0x5c
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x10 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .debug_abbrev  0x00000010       0x14 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+ .debug_abbrev  0x00000024       0x14 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+ .debug_abbrev  0x00000038       0x14 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+ .debug_abbrev  0x0000004c       0x10 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.debug_line     0x00000000      0x367
+ *(.debug_line)
+ .debug_line    0x00000000       0xaa /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crti.o
+ .debug_line    0x000000aa       0xbe /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_divsi3.oS)
+ .debug_line    0x00000168       0xbd /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_modsi3.oS)
+ .debug_line    0x00000225       0xb3 /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/libgcc.a(_dvmd_lnx.oS)
+ .debug_line    0x000002d8       0x8f /korea-dokdo/aesoptool/gcc-3.3.4-glibc-2.3.3/arm-linux/lib/gcc-lib/arm-linux/3.3.4/../../../../arm-linux/lib/crtn.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(duksan elf32-littlearm)

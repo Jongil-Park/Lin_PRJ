@@ -1,0 +1,4 @@
+ifconfig eth0 down
+ifconfig eth0 hw ether 00:33:10:10:00:99
+ifconfig eth0 192.168.2.99
+ifconfig eth0 up

@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.local:  Local system initialization script.
+#
+# Put any local setup commands in here:
+/etc/devpts/devpts.sh
+
+#dhcp client setting
+#ifconfig eth0 down
+#ifconfig eth1 192.168.2.1 netmask 255.255.255.0
+#route add default gw 192.168.2.1 eth1
+#/usr/sbin/udhcpd /etc/udhcpd.conf
+#/sbin/udhcpc -i eth0
+
+#nat setting
+#echo 1 > /proc/sys/net/ipv4/ip_forward
+#iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+#/usr/sbin/stupid-ftpd
+
+#mkdir /mnt/mmcblk0p1
+#mount -t vfat -o codepage=949,iocharset=cp949 /dev/mmcblk0p1 /mnt/mmcblk0p1
+
+echo "Ethernet Ready with IP : 30.14.9.61"
+ifconfig eth0 down
+ifconfig eth0 30.14.9.61
+ifconfig eth0 hw ether 00:33:09:10:30:61
+ifconfig eth0 up
+route add net default gw 30.14.9.1
+ifconfig lo 127.0.0.1 up
+
+sleep 1
+#echo "RUN_bjs Protocol Start..."
+cd /lsu
+sleep 3
+./configEth0 &
+sleep 3
+./RUN_bjs &

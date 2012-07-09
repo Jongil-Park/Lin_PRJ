@@ -1,0 +1,560 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
+//
+#include "define.h"
+#include "queue.h"
+#include "point_manager.h"
+#include "cmd_handler.h"
+
+extern pthread_mutex_t interfaceMessageQ_mutex;
+extern pthread_mutex_t pointTable_mutex;
+//
+extern point_queue interface_message_queue;
+//
+extern float point_table[MAX_NET32_NUMBER][MAX_POINT_NUMBER];
+//
+unsigned char cmd_tx_msg[MAX_BUFFER_SIZE];
+unsigned char cmd_rx_msg[MAX_BUFFER_SIZE];
+
+extern int debug_elba_tx;
+extern int debug_elba_rx;
+
+extern queue_status status;;
+
+int handleCommandStatus(int fd, int rxmsg_length);
+int handleCommandDebugNRX(int fd, int rxmsg_length);
+int handleCommandDebugNTX(int fd, int rxmsg_length);
+int handleCommandDebugTCP(int fd, int rxmsg_length);
+int handleCommandPgetMultiPoint(int fd, int rxmsg_length);
+int handleCommandPset(int fd, int rxmsg_length);
+int do_handle_command(int fd, fd_set* reads);
+void *command_handler_main(void* arg);
+
+/****************************************************************/
+//Extern Semaphores
+extern sem_t SEMA; 
+
+
+/*
+semaphores를 사용해서 TimeWait를 만들었다. 
+*/
+/****************************************************************/
+static void commandHandlerSemaWait(int msec)
+/****************************************************************/
+{
+	int s = 0;
+	struct timespec ts_sema;
+	
+    if (clock_gettime(CLOCK_REALTIME, &ts_sema) == -1) {
+        printf("%s() clock_gettime\n", __FUNCTION__);
+        return;
+    }
+    ts_sema.tv_sec += msec / 1000;
+    ts_sema.tv_nsec = 1000000 + msec;
+
+    while ((s = sem_timedwait(&SEMA, &ts_sema)) == -1 && errno == EINTR)
+        continue;       /* Restart if interrupted by handler */	
+}
+
+/*******************************************************************/
+void commandHandlerSelectSleep(int sec,int msec) 
+/*******************************************************************/
+{
+    struct timeval tv;
+    tv.tv_sec=sec;
+    tv.tv_usec=msec*1000;                
+    select(0,NULL,NULL,NULL,&tv);
+    return;
+}
+
+
+/*******************************************************************/
+void* command_handler_main(void* arg)
+/*******************************************************************/
+{
+	//Variables
+	int i, j;
+	//
+	int fd_max;
+	fd_set reads, temps;
+	struct timeval tv;
+    struct timespec req;
+    struct timespec rem;	
+	//
+	int server_socket;
+	int client_socket;
+	struct sockaddr_in server_addr;
+	struct sockaddr_in client_addr;
+	//
+	int fd;
+	int sin_size;
+	int server_port;
+	int status;
+	
+
+	//Initialize
+	i = j = 0;
+	//
+	fd_max = 0;
+	FD_ZERO(&reads);
+	FD_ZERO(&temps);
+	tv.tv_sec = 1;
+	tv.tv_usec = 0; //0.01sec
+	//
+	server_socket = 0;
+	client_socket = 0;
+	memset(&server_addr, 0, sizeof(server_addr));
+	memset(&client_addr, 0, sizeof(client_addr));
+	//
+	fd = 0;
+	sin_size = sizeof(client_addr);
+	server_port = COMMAND_SERVER_PORT;
+	status = INIT_PROCESS;
+	
+	//Ignore broken_pipe signal
+	signal(SIGPIPE, SIG_IGN);
+	sleep(1);	 
+	//usleep(3000);
+	
+	while(1)
+	{
+		//commandHandlerSemaWait(100);
+		switch(status)
+		{
+			case INIT_PROCESS:
+			{
+				server_socket = socket(PF_INET, SOCK_STREAM, 0);
+				printf("Command Server Started, Port [%d]\n", server_port);
+				//
+				server_addr.sin_family = AF_INET;
+				server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+				server_addr.sin_port = htons(server_port);
+				//
+				setsockopt(server_socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+				//
+				if(bind(server_socket, (struct sockaddr *)&server_addr,
+							sizeof(server_addr)) < 0)
+				{
+					printf("[ERROR] In Bind of Command Server\n");
+					close(server_socket);
+					status = INIT_PROCESS;
+					sleep(10);
+					//commandHandlerSemaWait(5000);
+					break;
+				}
+				//
+				if(listen(server_socket, 10) < 0)
+				{
+					printf("[ERROR] In Listen of Command Server\n");
+					close(server_socket);
+					status = INIT_PROCESS;
+					sleep(10);
+					//commandHandlerSemaWait(5000);
+					break;
+				}
+				//
+				FD_ZERO(&reads);
+				FD_SET(server_socket, &reads);
+				fd_max = server_socket;
+				//
+				status = SELECT_PROCESS;
+				break;
+			}
+			//
+			case SELECT_PROCESS:
+			{
+				//commandHandlerSemaWait(500);
+				/*
+				CPU 점유율을 낮추기 위하여 slectsleep 합니다.
+				*/				
+				commandHandlerSelectSleep(0,200);
+				//
+				temps = reads;
+				//
+				if(select(fd_max+1, &temps, 0, 0, &tv) == -1)
+				{
+					printf("[ERROR] In Select of Command Server\n");
+					status = INIT_PROCESS;
+					sleep(10);
+					//commandHandlerSemaWait(5000);
+					break;
+				}
+				//
+				status = SELECT_PROCESS;
+				//
+				for(fd = 0; fd < (fd_max + 1); fd++)
+				{
+					if(FD_ISSET(fd, &temps))
+					{	
+						//if connection's been requested,
+						if(fd == server_socket)
+						{
+							status = CONNECTION_REQUESTED;
+							break;
+						}
+						else
+						{
+							status = HANDLE_COMMAND;
+							break;
+						}
+					}
+				}
+				break;
+			}
+			//
+			case CONNECTION_REQUESTED:
+			{
+				printf("B");
+				client_socket = accept(server_socket, (struct sockaddr *)&client_addr,
+						               &sin_size);
+				//
+				if (client_socket == -1)
+				{
+					printf("[Error] In Accept\n");
+					status = SELECT_PROCESS;
+					break;
+				}
+				//
+				FD_SET(client_socket, &reads);
+				if(fd_max < client_socket)
+					fd_max = client_socket;
+				//
+				status = SELECT_PROCESS;
+				break;
+			}
+			//
+			case HANDLE_COMMAND:
+			{
+				do_handle_command(fd, &reads);
+				status = SELECT_PROCESS;
+				break;
+			}
+		}			
+	}
+	//
+	//return;
+}
+
+/************************************************************/
+int
+do_handle_command(int fd, fd_set* reads)
+/************************************************************/
+{
+	//Variables
+	int i;
+	int rxmsg_length;
+	int status;
+	
+	//Initialize
+	i = 0;
+	rxmsg_length = 0;
+	status = GET_COMMAND_TYPE;
+	
+	memset(cmd_rx_msg, 0, sizeof(cmd_rx_msg));
+
+	rxmsg_length = recv(fd, cmd_rx_msg, sizeof(cmd_rx_msg), 0);
+    //
+	if(rxmsg_length == 0)
+	{
+		FD_CLR(fd, reads);
+		close(fd);
+		//printf("Command client closed, file descriptor [%d]\n", fd);
+		return SUCCESS;
+	}
+
+#if 0
+	printf("Command Handler RX msg[%d] : \n", rxmsg_length);
+	for(i = 0; i < rxmsg_length; i++)
+	{
+		printf("%02x ", cmd_rx_msg[i]);
+	}
+	printf("\n");
+#endif
+
+	while(1)
+	{
+		switch(status)
+		{
+			case GET_COMMAND_TYPE:
+				status = cmd_rx_msg[0];
+				break;
+
+			case COMMAND_PSET:
+				return handleCommandPset(fd, rxmsg_length);
+
+			case COMMAND_PGET_MULTI_POINT:
+				return handleCommandPgetMultiPoint(fd, rxmsg_length);
+
+			case COMMAND_DEBUG_TCP:
+				return handleCommandDebugTCP(fd, rxmsg_length);
+
+			case COMMAND_DEBUG_NTX:
+				return handleCommandDebugNTX(fd, rxmsg_length);
+
+			case COMMAND_DEBUG_NRX:
+				return handleCommandDebugNRX(fd, rxmsg_length);
+
+			case COMMAND_STATUS:
+				return handleCommandStatus(fd, rxmsg_length);
+
+			default : 
+				printf("Unknown Command Type [%d]\n", status);
+				return ERROR;
+		}
+	}
+}
+
+/************************************************************/
+int 
+handleCommandPset(int fd, int rxmsg_length)
+/************************************************************/
+{
+	//Variables
+	int i;
+	point_info point;
+	
+	//Initialize
+	i = 0;
+	memset(&point, 0, sizeof(point));
+	
+	if(rxmsg_length < 9)
+	{
+		printf("[ERROR] Incorrect pSet message in command handler\n");
+		return ERROR;
+	}
+
+	memcpy(&point.pcm,	 &cmd_rx_msg[1], sizeof(short));
+	memcpy(&point.pno,	 &cmd_rx_msg[3], sizeof(short));
+	memcpy(&point.value, &cmd_rx_msg[5], sizeof(float));
+
+	if(point.pcm < 0 || point.pcm >= MAX_NET32_NUMBER || 
+	   point.pno < 0 || point.pno >= MAX_POINT_NUMBER)
+	{
+		printf("[ERROR] Incorrect pSet pcm [%hd] pno [%hd]\n", point.pcm, point.pno);
+		return ERROR;
+	}
+/*
+	//Update point table
+	pthread_mutex_lock(&pointTable_mutex);
+	point_table[point.pcm][point.pno] = point.value;
+	pthread_mutex_unlock(&pointTable_mutex);
+
+	//put to interface_message_queue
+	point.message_type = CMD_PSET;
+	pthread_mutex_lock(&interfaceMessageQ_mutex);
+	status.interface_message_in++;
+	putq(&interface_message_queue, point);
+	pthread_mutex_unlock(&interfaceMessageQ_mutex);				
+*/
+	pSet(point.pcm, point.pno, point.value);
+	return SUCCESS;
+}
+
+/************************************************************/
+int 
+handleCommandPgetMultiPoint(int fd, int rxmsg_length)
+/************************************************************/
+{
+	//Variables
+	int i;
+	short pcm;
+	short pno;
+	int number;
+	float* fvalue;
+	point_info point;
+	
+	//Initialze
+	i       = 0;
+	pcm     = 0;
+	pno     = 0;
+	number  = 0;
+	memset(&point, 0, sizeof(point));
+	memset(cmd_tx_msg, 0, sizeof(cmd_tx_msg));
+	
+	if(rxmsg_length < 8)
+	{
+		printf("[ERROR] Incorrect pGetPlural message in command handler\n");
+		return ERROR;
+	}
+
+	memcpy(&pcm,   &cmd_rx_msg[1], sizeof(short));
+	memcpy(&pno,   &cmd_rx_msg[3], sizeof(short));
+	memcpy(&number, &cmd_rx_msg[5], sizeof(int));
+
+	if(pcm < 0 || pcm >= MAX_NET32_NUMBER  || 
+	   pno < 0 || pno >= MAX_POINT_NUMBER  ||
+	   number < 0 || number > MAX_POINT_NUMBER)
+	{
+		printf("[ERROR] Incorrect pGet pcm [%hd] pno [%hd] number [%hd]\n", 
+				pcm, pno, number);
+		return ERROR;
+	}
+
+	//Set default value
+	point.pcm = pcm;
+	point.pno = pno;
+	fvalue = (float *) malloc(sizeof(float) * number);
+	memset(fvalue, 0, sizeof(fvalue));
+	
+	//Get values from point_table
+	pthread_mutex_lock(&pointTable_mutex);
+	for(i = 0; i < number; i++)
+		fvalue[i] = point_table[pcm][pno + i];
+	pthread_mutex_unlock(&pointTable_mutex);
+	point.message_type = COMMAND_PGET_SUCCESS;
+
+	printf("\n  PCM         VALUE \n");
+	printf("================================================\n");
+	for (i = 0; i <= number; i++)
+	{	
+		printf(" %02d-%03d       %0.2f\n", 
+		    pcm, pno+i, point_table[pcm][pno+i]);
+	}
+
+	free(fvalue);
+	return SUCCESS;
+}
+
+/************************************************************/
+int 
+handleCommandDebugTCP(int fd, int rxmsg_length)
+/************************************************************/
+{
+	if(rxmsg_length < 5)
+	{
+		printf("[ERROR] %s-%d rxmsg_length = %d\n", 
+				__FUNCTION__, 
+				__LINE__, 
+				rxmsg_length);
+		return ERROR;
+	}
+
+	if(cmd_rx_msg[4] == 1)
+	{
+		printf("debug tcp on\n");	
+		debug_elba_tx = 1;
+		debug_elba_rx = 1;
+	}		
+	else
+	{
+		debug_elba_tx = 0;
+		debug_elba_rx = 0;
+		printf("debug tcp off\n");		
+	}
+
+	return SUCCESS;
+}
+
+/************************************************************/
+int 
+handleCommandDebugNTX(int fd, int rxmsg_length)
+/************************************************************/
+{
+	if(rxmsg_length < 5)
+	{
+		printf("[ERROR] %s-%d rxmsg_length = %d\n", 
+				__FUNCTION__, 
+				__LINE__, 
+				rxmsg_length);
+		return ERROR;
+	}
+
+	if(cmd_rx_msg[4] == 1)
+	{
+		printf("debug ntx on\n");	
+		debug_elba_tx = 1;
+	}		
+	else
+	{
+		debug_elba_tx = 0;
+		printf("debug ntx off\n");		
+	}
+
+	return SUCCESS;
+}
+
+/************************************************************/
+int 
+handleCommandDebugNRX(int fd, int rxmsg_length)
+/************************************************************/
+{
+	if(rxmsg_length < 5)
+	{
+		printf("[ERROR] %s-%d rxmsg_length = %d\n", 
+				__FUNCTION__, 
+				__LINE__, 
+				rxmsg_length);
+		return ERROR;
+	}
+
+	if(cmd_rx_msg[4] == 1)
+	{
+		printf("debug nrx on\n");	
+		debug_elba_rx = 1;
+	}		
+	else
+	{
+		debug_elba_rx = 0;
+		printf("debug nrx off\n");		
+	}
+
+	return SUCCESS;
+}
+
+
+/************************************************************/
+int 
+handleCommandStatus(int fd, int rxmsg_length)
+/************************************************************/
+{
+	if(rxmsg_length < 7)
+	{
+		printf("[ERROR] %s-%d rxmsg_length = %d\n", 
+				__FUNCTION__, 
+				__LINE__, 
+				rxmsg_length);
+		return ERROR;
+	}
+
+	printf("Status\n");
+	printf("TxBytes: %08.0f 	RxBytes: %08.0f\n", status.tcp_total_tx, status.tcp_total_rx );
+	printf("\nQueue\n");
+	printf("elba            InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.elba_in,
+		status.elba_out,
+		status.elba_full);
+	printf("elba_msg        InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.elba_message_in,
+		status.elba_message_out,
+		status.elba_message_full);
+	printf("net32 	        InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.net32_in,
+		status.net32_out,
+		status.net32_full);
+	printf("net32_msg       InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.net32_message_in,
+		status.net32_message_out,
+		status.net32_message_full);
+	printf("interface_msg   InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.interface_message_in,
+		status.interface_message_out,
+		status.interface_message_full);
+	printf("bacnet_msg      InQ: %08.0f    OutQ: %08.0f    Full: %08.0f\n", 
+		status.bacnet_message_in,
+		status.bacnet_message_out,
+		status.bacnet_message_full);
+	
+	return SUCCESS;
+}

@@ -1,0 +1,679 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
+/****************************************************************/
+#include "define.h"
+#include "queue.h"
+#include "elba.h"
+//
+/****************************************************************/
+//Define head, tail
+const char head[5] = "{HEAD";
+const char tail[5] = "TAIL}";
+//
+/****************************************************************/
+//Buffer
+unsigned char elba_tx_msg[MAX_BUFFER_SIZE];
+unsigned char elba_rx_msg[MAX_BUFFER_SIZE];
+//
+/****************************************************************/
+//Debug variable
+int debug_elba_tx = 0;
+int debug_elba_rx = 0;
+//
+/****************************************************************/
+//Extern mutex
+extern pthread_mutex_t elbaQ_mutex;
+extern pthread_mutex_t elbaMessageQ_mutex;
+//
+//Extern point_queue
+extern point_queue elba_queue;
+extern point_queue elba_message_queue;
+//
+/****************************************************************/
+//Configuere variable
+static cmdinfo pre_cmd[CFG_COMMAND_COUNT];
+//
+/****************************************************************/
+//Extern status variable
+extern queue_status status;
+extern int multi_ddc;
+extern float point_table[MAX_NET32_NUMBER][MAX_POINT_NUMBER];
+//
+/****************************************************************/
+//Extern Semaphores
+//extern sem_t SEMA; 
+
+
+#if 0
+/*
+semaphores를 사용해서 TimeWait를 만들었다. 
+*/
+/****************************************************************/
+static void elbaSemaWait(int sec, int msec)
+/****************************************************************/
+{
+	int s = 0;
+	struct timespec ts_sema;
+	
+    if (clock_gettime(CLOCK_REALTIME, &ts_sema) == -1) {
+        printf("%s() clock_gettime\n", __FUNCTION__);
+        return;
+    }
+    ts_sema.tv_sec += sec;
+    ts_sema.tv_nsec = msec;
+
+    while ((s = sem_timedwait(&SEMA, &ts_sema)) == -1 && errno == EINTR)
+        continue;       /* Restart if interrupted by handler */	
+}
+#endif 
+
+/*
+slect를 사용해서 TimeWait를 만들었다. 
+*/
+/*******************************************************************/
+void elbaSelectSleep(int sec,int msec) 
+/*******************************************************************/
+{
+    struct timeval tv;
+    tv.tv_sec=sec;
+    tv.tv_usec=msec;                
+    select(0,NULL,NULL,NULL,&tv);
+    return;
+}
+
+
+/****************************************************************/
+void *elba_main(void* arg)
+/****************************************************************/
+{
+	//Variable 
+	int i, j, k;
+	//
+	int sock_fd;
+	int connect_flag;
+	char stationip[CFG_VALUE_SIZE];
+	struct sockaddr_in server_addr;
+	struct timeval timeo;
+	//
+	point_info point;
+	//
+	int elba_status;
+	int rx_status;
+
+	//Initialize
+	i = j = k = 0;
+	//
+	sock_fd = -1;
+	connect_flag = -1;
+	strncpy(stationip, "100.100.100.100", sizeof(stationip));
+	memset(&server_addr, 0, sizeof(server_addr));
+	timeo.tv_sec = 0;
+	timeo.tv_usec = 10000;
+	//
+	memset(&point, 0, sizeof(point));
+	//	
+	elba_status = NOT_CONNECTED;
+	rx_status = 0;
+	
+	//Ignore broken_pipe signal
+	signal(SIGPIPE, SIG_IGN);
+	usleep(5000);
+
+	//Get StationIP
+	if(get_stationIP(stationip) == ERROR)
+	{
+		printf("Can't get stationIP from config.dat file. Please check config.dat file\n");
+		pthread_exit(NULL);
+	}
+
+	//elbaSemaWait(3, 0);
+	elbaSelectSleep(3, 0);
+
+	printf("Trying to connect 3i-Station, IP [%s]\n", stationip);
+
+	while(1)
+	{
+	    //elbaSemaWait(0, 100);
+	    //elbaSelectSleep(0,100);
+	    
+		switch(elba_status)
+		{
+			case NOT_CONNECTED:
+			{
+				sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+				if(sock_fd < 0)
+				{
+					printf("3i Socket Creation Error...\n");
+					close(sock_fd);
+					continue;					
+				}
+	
+				//setsockopt(sock_fd, SOL_SOCKET, SO_SNDTIMEO, &timeo, sizeof(timeo));
+				setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, &timeo, sizeof(timeo));
+				//	
+				memset(&server_addr, 0, sizeof(server_addr));
+				server_addr.sin_family = AF_INET;
+				server_addr.sin_addr.s_addr = inet_addr(stationip);
+				server_addr.sin_port = htons(SERVER_PORT);
+		
+				//printf("Trying to connect 3i-Station, IP [%s], FD [%d]\n", 
+				//		stationip, sock_fd);
+				//
+				if (connect(sock_fd, (struct sockaddr*)&server_addr, 
+							sizeof(server_addr)) == -1)
+				{
+					//printf("Connect Error...Goto Retrying...\n");
+					sleep(1);
+					//elbaWait(1000);
+					close(sock_fd);
+					continue;
+				}
+				else
+				{
+					//printf("Connect Success...\n");
+					printf("Connect to 3i-Station, IP [%s], FD [%d]\n", 
+							stationip, sock_fd);					
+					elba_status = HANDLE_SENDING;
+					break;
+				}
+			}
+			//
+			case HANDLE_SENDING:
+			{
+				//Handlig TX Message
+				//Get Data From Elba_Queue, and Make TX Msg, Then Send.
+				if(handle_sending(sock_fd) < 0)
+				{
+					printf("Handle_Sending Error...Goto Reconnection...\n");
+					close(sock_fd);
+					elba_status = NOT_CONNECTED;
+					break;
+				}
+				else
+				{
+					elba_status = HANDLE_RECEIVING;
+					break;
+				}
+			}
+			//
+			case HANDLE_RECEIVING:
+			{
+				//Handlig RX Message
+				rx_status = handle_receiving(sock_fd);
+				if(rx_status == 0)
+				{
+					printf("3i-Station Connection Closed...Goto Reconnection...\n");
+					printf("Trying to connect 3i-Station, IP [%s]\n", stationip);
+					close(sock_fd);
+					elba_status = NOT_CONNECTED;
+					break;
+				}
+				//
+				else
+				{
+					elba_status = HANDLE_SENDING;
+					//printf("DEBUG : set status to HANDLE_SENDING\n");
+					sched_yield();
+					break;
+				}
+			}
+		}
+	}
+	
+//	return;
+}
+			
+/****************************************************************/
+int get_stationIP(char* stationip)
+/****************************************************************/
+{
+	//Variables
+	FILE* fp;
+	int cnt = 0;
+
+	//Initialize
+	fp = NULL;
+	memset(pre_cmd, 0, sizeof(pre_cmd));
+	
+	// file open
+	if((fp = fopen("/duksan/CONFIG/config.dat", "r")) == NULL)
+	{
+		if (fp != NULL)  fclose(fp);
+		printf("[ERROR1] File Open with Option 'r'\n");		
+		return ERROR;
+	}
+	else
+	{
+		// search file.
+		while(!feof(fp))
+		{
+			fscanf(fp, "%s %s\n", 
+				(char *)&pre_cmd[cnt].name, 
+				(char *)&pre_cmd[cnt].value);	
+			if (strncmp((char *)&pre_cmd[cnt].name, "stationip", 5) == 0)
+			{
+				// copy StationIP
+				memcpy(stationip, (char *)&pre_cmd[cnt].value, CFG_VALUE_SIZE);
+				if (fp != NULL)  fclose(fp);		
+				return SUCCESS;	
+			}
+			else
+				cnt++;
+		}				
+	}
+
+	printf("[ERROR2] StationIP ont found\n");		
+	if (fp != NULL)  fclose(fp);
+	return ERROR;		
+}
+
+/****************************************************************/
+int handle_sending(int sock_fd)
+/****************************************************************/
+{
+	//Variables
+	int i,j,k;
+	int count;
+	int result;
+	int tx_msg_ptr;
+	point_info point;
+	unsigned char temp_msg[25];
+	struct timespec ts;
+	int prePcm = -1;
+	int prePno = -1;
+
+	//Init Variables
+	i = 0; j = 0; k = 0;
+	count = 0;
+	result = 0;
+	tx_msg_ptr = 0;
+	memset(&point, 0, sizeof(point_info));
+	memset(elba_tx_msg, 0, sizeof(elba_tx_msg));
+	memset(temp_msg, 0, sizeof(temp_msg));
+	//ts.tv_sec = 0;
+	//ts.tv_nsec = 10000000; //0.01sec
+
+	//
+	for(i = 0; i < ELBA_TX_MESSAGE_COUNT; i++)
+	{
+		pthread_mutex_lock(&elbaQ_mutex);
+		result = getq(&elba_queue, &point);
+		pthread_mutex_unlock(&elbaQ_mutex);
+
+		if(result != SUCCESS)
+		{
+			//break;
+			break;
+		}
+		
+		status.elba_out++;
+		
+		make_elba_tx_msg(temp_msg, point);
+		if (prePcm == point.pcm && prePno == point.pno)
+		{
+			memcpy(elba_tx_msg, temp_msg, sizeof(temp_msg));
+		}
+		else
+		{
+			prePcm = point.pcm;
+			prePno = point.pno;
+			memcpy(elba_tx_msg + tx_msg_ptr, temp_msg, sizeof(temp_msg));
+			tx_msg_ptr = tx_msg_ptr + sizeof(temp_msg);		
+		}
+	}
+	
+	//if there's no data to send
+	if(tx_msg_ptr == 0)
+		return SUCCESS;
+	
+	if(send(sock_fd, elba_tx_msg, tx_msg_ptr, 0) < 0)
+	{
+		return ERROR;
+	}
+	else if(debug_elba_tx)
+	{
+		printf("TxD(%d) : \n", tx_msg_ptr);
+		for(i = 1; i < tx_msg_ptr + 1; i++)
+		{
+			printf("0x%02x ", elba_tx_msg[i-1]);
+			if((i % 25) == 0)
+				printf("\n");
+		}
+		printf("\n");
+	}
+	status.tcp_total_tx += tx_msg_ptr;
+
+	return SUCCESS;
+}
+
+/****************************************************************/
+void 
+make_elba_tx_msg(unsigned char* temp_msg, point_info point)
+/****************************************************************/
+{
+	unsigned char total_length;
+	float value;
+
+	total_length = 0x19;
+	value = change_byte_order(point.value);
+
+	memcpy(temp_msg + 0,  head,				 5);
+	memset(temp_msg + 5,  0x0D,     		 1);
+	memset(temp_msg + 6,  0xfe,          	 1);
+	memset(temp_msg + 7,  0xfe,          	 1);
+	memset(temp_msg + 8,  0x20,          	 1);
+	memset(temp_msg + 9,  0x0C,          	 1);
+	memset(temp_msg + 10, 0xfe,          	 1);
+	memset(temp_msg + 11, 0xfe,          	 1);
+	memcpy(temp_msg + 12, &point.pcm,    	 1);
+	memcpy(temp_msg + 13, &point.pno,    	 1);
+	memcpy(temp_msg + 14, &value,		 	 4);
+	memcpy(temp_msg + 19, &total_length, 	 1);
+	memcpy(temp_msg + 20, tail,		 		 5);
+	return;
+}
+
+/****************************************************************/
+float 
+change_byte_order(float fvalue)
+/****************************************************************/
+{
+	unsigned char* p1;
+	unsigned char* p2;
+	float return_val;
+	
+	p1 = (char*) &fvalue;
+	p2 = (char*) &return_val;
+	
+	p2[0] = p1[3];
+	p2[1] = p1[2];
+	p2[2] = p1[1];
+	p2[3] = p1[0];
+
+	return return_val;
+}
+	
+
+/****************************************************************/
+int handle_receiving(int sock_fd)
+/****************************************************************/
+{
+	//Variables
+	int i, j;
+	//
+	int msg_type;
+	point_info point;
+	float value;
+	//
+	int index;
+	//
+	int recv_length;
+	int temp_length;
+	int recv_status;
+	
+	//Initialize
+	i 			 =  0;
+	j			 =  0;
+	//
+	msg_type 	 = -1;
+	memset(&point, 0, sizeof(point));
+	value		 = -1;
+	//
+	index 	 	 =  0;
+	//
+	recv_length  = -1;
+	temp_length  =  0;
+	recv_status  = IN_HEAD;
+
+	memset(elba_rx_msg, 0, sizeof(elba_rx_msg));
+		
+	//Recv Data
+	if((recv_length = recv(sock_fd, elba_rx_msg, sizeof(elba_rx_msg), 0)) > 0)
+	{
+		while((temp_length = recv(sock_fd, elba_rx_msg + recv_length, 
+						     sizeof(elba_rx_msg) - recv_length, 0)) > 0)
+		{
+			recv_length = recv_length + temp_length;
+		}
+	}
+		
+	//
+	if(recv_length == 0)
+		return 0;
+	else if(recv_length < 0)
+		return SUCCESS;
+	else if(debug_elba_rx)
+	{
+		printf("RxD(%d) : \n", recv_length);
+		for(i = 0; i < recv_length; i++)
+		{
+			printf("0x%02x ", elba_rx_msg[i]);
+			if (elba_rx_msg[i-1] == 0x4c && elba_rx_msg[i] == 0x7d)
+				printf("\n");
+		}
+		printf("\n");
+	}
+
+	status.tcp_total_rx += recv_length;
+
+	//Parsing
+	while(1)
+	{
+		switch(recv_status)
+		{
+			case IN_HEAD:
+			{
+				//printf("DEBUG : In Head\n");
+				if(memcmp(head, &elba_rx_msg[index], sizeof(head)) == 0)
+				{
+					recv_status = IN_DATA_TYPE;
+					index = index + 8;
+					break;
+				}
+				else
+				{
+					printf("[ERROR3] Unidentified Header In Elba\n");
+					printf("%x\n", elba_rx_msg[index]);
+					printf("%x\n", elba_rx_msg[index+1]);
+					printf("%x\n", elba_rx_msg[index+2]);
+					printf("%x\n", elba_rx_msg[index+3]);
+					printf("%x\n", elba_rx_msg[index+4]);
+					return ERROR;
+				}
+			}
+
+			case IN_DATA_TYPE:
+			{
+				
+				if(elba_rx_msg[index] == 0x00)
+				{
+					recv_status = IN_REQUIRE;
+					index = index + 4;
+					break;
+				}
+
+				else if(elba_rx_msg[index] == 0x40)
+				{
+					recv_status = IN_COMMAND;
+					index = index + 4;
+					break;
+				}
+				
+				/*
+				it is GCU timeSunc protocol.
+				but.. not used.
+				*/
+				else if(elba_rx_msg[index - 3] == 0x0F)		
+				{
+					recv_status = IN_TIME;
+					index = index + 4;
+					index = index + 8;
+					index = index + 1;
+					recv_status = IN_TAIL;
+					break;
+				}
+				
+				else
+				{
+					printf("[ERROR4] Unidentified Data type In Elba\n");
+					return ERROR;
+				}
+			}
+
+			case IN_REQUIRE:
+			{
+				//printf("DEBUG : In IN_REQUIRE\n");
+				memcpy(&point.pcm, &elba_rx_msg[index], sizeof(char));
+				index++;
+				//
+				memcpy(&point.pno, &elba_rx_msg[index], sizeof(char));
+				index = index + 3;
+				//
+				/*
+				point_table의 값은 항상 update된 값을 가지고 있는 DB이기 때문에
+				point_table의 값을 바로 올려보내줘도 괜찮을 것이라고 생각한다.
+				*/
+#if 0				
+				point.message_type = ELBA_REQUIRE;				
+				//
+				pthread_mutex_lock(&elbaMessageQ_mutex);
+				status.elba_message_in++;
+				putq(&elba_message_queue, point);
+				pthread_mutex_unlock(&elbaMessageQ_mutex);
+#else
+				/*
+				만약 net32가 연결되어 있다면, 
+				Net32는 느린 Device이기 때문에 먼저 3iS에서 요청을 처리하고
+				Queue를 사용해서 새로운 값을 갱신하도록 한다.
+				그러므로 Net32가 연결되어 있다면, 
+				3iS의 요청에 의해 2번의 응답을 보내게 되는 것이다.
+				*/
+				if (multi_ddc)		// mode is multi_ddc 
+				{
+					pthread_mutex_lock(&elbaQ_mutex);
+					point.value = point_table[point.pcm][point.pno];
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);				
+				}
+				else				// mode is net32
+				{
+					pthread_mutex_lock(&elbaQ_mutex);
+					point.value = point_table[point.pcm][point.pno];
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);				
+					
+					//To do....
+				}				
+#endif				
+				//
+				//printf("DEBUG : putQ to elba_message_queue(ELBA_REQUIRE) pcm = %d pno = %d\n", point.pcm, point.pno);
+				//
+				recv_status = IN_TAIL;
+				break;
+			}
+
+			case IN_COMMAND:
+			{
+				//printf("DEBUG : In IN_COMMAND\n");
+				memcpy(&point.pcm, &elba_rx_msg[index], sizeof(char));
+				index++;
+				//
+				memcpy(&point.pno, &elba_rx_msg[index], sizeof(char));
+				index++;
+				//
+				memcpy(&point.value, &elba_rx_msg[index], sizeof(float));
+				index = index + 6;
+				point.value = change_byte_order(point.value);
+				//
+#if 0
+					point.message_type = ELBA_COMMAND;
+					//
+					pthread_mutex_lock(&elbaMessageQ_mutex);
+					status.elba_message_in++;
+					putq(&elba_message_queue, point);
+					pthread_mutex_unlock(&elbaMessageQ_mutex);					
+#else
+				/*
+				만약 Net32를 사용한다면, 
+				point_table의 값을 갱신하지 않고 Net32로 data를 보낸다.
+				하지만 Net32를 사용하지 않는 경우에는, 
+				point_table의 값을 갱신하고 그 값을 3iS로 보낸다.
+				*/				
+				if (multi_ddc)		// mode is multi_ddc 
+				{
+					pthread_mutex_lock(&elbaQ_mutex);
+					point_table[point.pcm][point.pno] = point.value;
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);									
+					//printf("DEBUG Value cur = %f, value = %f \n",point_table[point.pcm][point.pno],  point.value);
+					//printf("DEBUG PutQ  pcm = %d pno = %d, value = %f \n", point.pcm, point.pno, point_table[point.pcm][point.pno]);
+				}
+				else				// mode is net32
+				{
+					point.message_type = ELBA_COMMAND;
+					//
+					pthread_mutex_lock(&elbaMessageQ_mutex);
+					status.elba_message_in++;
+					putq(&elba_message_queue, point);
+					pthread_mutex_unlock(&elbaMessageQ_mutex);					
+				}
+#endif
+				//printf("DEBUG : putQ to elba_message_queue(ELBA_COMMAND) pcm = %d pno = %d\n", point.pcm, point.pno);
+				//
+				recv_status = IN_TAIL;
+				break;
+			}
+
+			case IN_TAIL:
+			{
+				//printf("DEBUG : In Tail\n");
+				if(memcmp(tail, &elba_rx_msg[index], sizeof(tail)) == 0)
+				{
+					index = index + 5;
+					//
+					if(index >= recv_length)
+						return SUCCESS;
+					//
+					recv_status = IN_HEAD;
+					break;
+				}
+				else
+				{
+					printf("[ERROR5] Unidentified Tail in Elba\n");
+					return ERROR;
+				}
+			}
+		}
+	}					
+	//
+	return SUCCESS;
+}
+
+void putElbaQ(int pcm, int pno, float value)
+{
+	point_info point;
+
+	point.pcm = pcm;
+	point.pno = pno;
+	point.value = value;
+
+	pthread_mutex_lock(&elbaQ_mutex);
+	status.elba_in++;
+	putq(&elba_queue, point);
+	pthread_mutex_unlock(&elbaQ_mutex);
+}

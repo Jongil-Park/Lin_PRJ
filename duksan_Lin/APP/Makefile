@@ -1,0 +1,135 @@
+#Makefile to build BACnet Application for the Linux Port
+
+CC = arm-linux-gcc
+
+TARGET = duksan
+
+# Configure the BACnet Datalink Layer
+#BACDL_DEFINE = -DBACDL_ETHERNET=1
+#BACDL_DEFINE = -DBACDL_ARCNET=1
+#BACDL_DEFINE = -DBACDL_MSTP=1
+BACDL_DEFINE = -DBACDL_BIP=1
+BACNET_DEFINES = -DBACFILE=1 -DPRINT_ENABLED=1 -DBACAPP_ALL
+DEFINES = $(BACNET_DEFINES) $(BACDL_DEFINE)
+
+# Directories
+#DUKSAN_INCLUDE = ./include
+DUKSAN_INCLUDE = ./../INCLUDE
+
+BACNET_PORT = linux
+#BACNET_PORT_DIR = ../../ports/${BACNET_PORT}
+#BACNET_INCLUDE = ../../include
+#BACNET_PORT_DIR = ./include/bacnet_ports/${BACNET_PORT}
+BACNET_PORT_DIR = ./../INCLUDE/bacnet_ports/${BACNET_PORT}
+#BACNET_INCLUDE = ./include/bacnet_include
+BACNET_INCLUDE = ./../INCLUDE/bacnet_include
+
+# BACnet Library
+#BACNET_LIB_DIR = ./Lib
+BACNET_LIB_DIR = ./../LIBRARY
+BACNET_LIB_NAME = bacnet
+BACNET_LIB_TARGET = $(BACNET_LIB_DIR)/lib$(BACNET_LIB_NAME).a
+# Compiler Setup
+INCLUDES = -I$(DUKSAN_INCLUDE) -I$(BACNET_INCLUDE) -I$(BACNET_PORT_DIR)
+ifeq (${BACNET_PORT},linux)
+LRTFLAGS = -lrt
+PFLAGS = -pthread
+TARGET_BIN = ${TARGET}
+# ??? LIBRARIES=-lc,-lgcc,-lm,-L=$(BACNET_LIB_DIR),-l$(BACNET_LIB_NAME)
+LIBRARIES=-lc,-lgcc,-lm,-L=$(BACNET_LIB_DIR)
+endif
+ifeq (${BACNET_PORT},win32)
+TARGET_BIN = ${TARGET}.exe
+LIBRARY1=-L=$(BACNET_LIB_DIR),-l$(BACNET_LIB_NAME)
+LIBRARY2=-lws2_32,-lgcc,-lm,-liphlpapi,-lwinmm
+LIBRARIES=$(LIBRARY1),$(LIBRARY2)
+endif
+#build for release (default) or debug
+DEBUGGING =
+OPTIMIZATION = -Os
+ifeq (${BUILD},debug)
+OPTIMIZATION = -O0
+DEBUGGING = -g
+endif
+# put all the flags together
+CFLAGS = -Wall $(DEBUGGING) $(OPTIMIZATION) $(INCLUDES) $(DEFINES)
+# ??? LFLAGS = -Wl,-Map=$(TARGET).map,$(LIBRARIES) 
+#LFLAGS = -Wl,-Map=$(TARGET).map,$(LIBRARIES) ../../lib/libbacnet.a 
+LFLAGS = -Wl,-Map=$(TARGET).map,$(LIBRARIES) ./Lib/libbacnet.a 
+
+#SRCS = main.c bacapp/bacapp.c readprop/readprop.c 
+#SRCS = main.c \
+#UTIL/crc16.c \
+#QUEUE/queue.c \
+#NET32/net32.c \
+#POINT/point_manager.c \
+#POINT/point_observer.c \
+#MESSAGE/message_handler.c \
+#COMMAND/cmd_handler.c \
+#ELBA/elba.c \
+#BACNET/writeprop.c \
+#BACNET/bacnet_manager.c \
+#IFACE_PLC/iface_plc.c \
+#IFACE_GHP/ghp_WebSvr.c \
+#IFACE_GHP/ghp_Web2Svr.c \
+#IFACE_GHP/ghp_ScheduleSvr.c \
+#IFACE_GHP/ghp_app.c \
+#IFACE_HANTEC/iface_hantec.c 
+
+# Source
+SRCS = Src/main.c \
+Src/crc16.c \
+Src/queue_handler.c \
+Src/net32_mgr.c \
+Src/point_observer.c \
+Src/point_handler.c \
+Src/point_mgr.c \
+Src/cmd_handler.c \
+Src/apg_mgr.c \
+Src/iface_handler.c \
+Src/demo_handler.c \
+Src/elba_mgr.c \
+Src/log_mgr.c \
+Src/modbus_mgr.c \
+Src/subio_mgr.c \
+Src/dbsvr_mgr.c \
+Src/userver_mgr.c \
+Src/uclient_mgr.c \
+Src/watchdog.c \
+Iface/BACNET/writeprop.c \
+Iface/BACNET/bacnet_manager.c \
+Iface/IFACE_DNP/iface_dnp.c \
+Iface/IFACE_DNP/iface_net32_to_dnp.c \
+Iface/IFACE_GHP/ghp_WebSvr.c \
+Iface/IFACE_GHP/ghp_Web2Svr.c \
+Iface/IFACE_GHP/ghp_ScheduleSvr.c \
+Iface/IFACE_GHP/ghp_app.c \
+Iface/IFACE_HANTEC/iface_hantec.c
+
+OBJS = ${SRCS:.c=.o}
+
+#all: ${BACNET_LIB_TARGET} Makefile ${TARGET_BIN}
+all: Makefile ${TARGET_BIN}
+#size ${TARGET_BIN}
+
+#${TARGET_BIN}: ${OBJS} Makefile ${BACNET_LIB_TARGET}
+${TARGET_BIN}: $(OBJS)
+	${CC} $(LRTFLAGS) ${PFLAGS} ${OBJS} ${LFLAGS} -o $@
+
+#lib: ${BACNET_LIB_TARGET}
+
+#${BACNET_LIB_TARGET}:
+#	( cd ${BACNET_LIB_DIR} ; make clean ; make )
+
+.c.o:
+	${CC} -c ${CFLAGS} $*.c -o $@
+
+depend:
+	rm -f .depend
+	${CC} -MM ${CFLAGS} *.c >> .depend
+
+clean:
+	rm -f core ${TARGET_BIN} ${OBJS} $(TARGET).map
+#echo $(TARGET_BIN)
+
+include: .depend

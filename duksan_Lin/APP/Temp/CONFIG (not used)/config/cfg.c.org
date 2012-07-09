@@ -1,0 +1,233 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+//
+
+#define CMD_GATEWAY_IP				"gatewayip"
+#define CMD_IP_ADDR					"ipaddr"
+#define CMD_STATION_IP				"stationip"
+#define CMD_TARGET					"target"
+#define CMD_NET32					"net32"
+#define CMD_BACNET					"bacnet"
+#define CMD_SUBIO					"subio"
+#define CMD_FILE_REMOVE				"init"
+
+#define FIND_COMMAND				1
+#define NOT_FIND_COMMAND			0
+
+#define OPEN_OPTION_WR				1
+#define OPEN_OPTION_W				2
+
+#define COMMAND_COUNT				64
+#define COMMAND_SIZE				64
+
+typedef struct 
+{
+	char name[COMMAND_SIZE];
+	char value[COMMAND_SIZE];	
+}cmdinfo;
+
+int dbg_show = 0;
+cmdinfo pre_cmd[COMMAND_COUNT];
+
+
+/*******************************************************************/
+static void file_hadler(char *pCmd, char *pVal)
+/*******************************************************************/
+{
+	int i = 0;
+	int cnt = 0;
+	FILE *fp = NULL;
+	int status = 0;
+	int offset = 0;
+	int check = 0;
+	char cmd[COMMAND_SIZE];
+	char value[COMMAND_SIZE];
+
+	memset(&pre_cmd, 0x00, sizeof(pre_cmd));
+
+	// open file.
+	if((fp = fopen("config.dat", "r")) == NULL)
+	{
+		if (fp != NULL)  fclose(fp);
+		printf("[ERROR] File Open with Option 'r'\n");		
+		if((fp = fopen("config.dat", "w")) == NULL)
+		{
+			if (fp != NULL)  fclose(fp);
+			printf("[ERROR] File Open with Option 'w'\n");		
+		}
+		else
+			status = OPEN_OPTION_W;
+	}
+	else
+	{
+		if (fp != NULL)  fclose(fp);
+		if((fp = fopen("config.dat", "r+")) == NULL)
+		{
+			if (fp != NULL)  fclose(fp);
+			printf("[ERROR] File Open with Option 'r+'\n");		
+		}
+		else
+			status = OPEN_OPTION_WR;
+	}
+
+	if (status == OPEN_OPTION_W)
+	{
+		fprintf(fp,"%s %s\n", pCmd, pVal); 
+		return;		
+	}
+	else
+	{
+		// scan file.
+		while(!feof(fp))
+		{
+			memset(cmd, 0x00, sizeof(cmd));
+			memset(value, 0x00, sizeof(value));
+			fscanf(fp, "%s %s\n", cmd, value);	
+			//memcpy(&pre_cmd[cnt].name, cmd, strlen(cmd) + 2);
+			//memcpy(&pre_cmd[cnt].value, value, strlen(value) + 2);
+			
+			if( strcmp((char *)&cmd, pCmd) == 0)
+			{
+				memcpy(&pre_cmd[cnt].name, pCmd, strlen(cmd) + 2);
+				memcpy(&pre_cmd[cnt].value, pVal, strlen(value) + 2);
+				memcpy(&pre_cmd[cnt].value, pVal, strlen(value) + 2);
+				check++;	
+				if(dbg_show) printf("find %d %d\n", strlen(cmd), strlen(pVal)); 					
+				if(dbg_show) printf("find %s %s\n", pCmd, pVal); 					
+				if(dbg_show) printf("find %s %s\n", pre_cmd[cnt].name, pre_cmd[cnt].value); 					
+			}
+			else
+			{
+				memcpy(&pre_cmd[cnt].name, cmd, strlen(cmd) + 2);
+				memcpy(&pre_cmd[cnt].value, value, strlen(value) + 2);
+			}
+
+			if(dbg_show) printf("pre %s %s\n", pre_cmd[cnt].name, pre_cmd[cnt].value); 					
+			
+			cnt++;
+		}		
+	}
+	if (fp != NULL)  fclose(fp);
+
+	if (check == 0)
+		offset = 1;
+	else
+		offset = 0;
+
+	if(dbg_show) printf("check = %d\n", check);	
+	if(dbg_show) printf("offset = %d\n", offset);	
+
+
+	if(dbg_show)  printf("pp cmd >> %s, %s\n", pCmd, pVal); 	
+
+	// file re-open
+	if((fp = fopen("config.dat", "w")) == NULL)
+	{
+		if (fp != NULL)  fclose(fp);
+		printf("[ERROR] File Open with Option 'w'\n");		
+	}
+	else
+	{
+		// file write.
+		if(dbg_show) printf("cnt = %d\n", cnt);	
+		for (i = 0; i < cnt; i++)
+		{
+			if(dbg_show) printf("modify\n");
+			fprintf(fp,"%s %s\n", pre_cmd[i].name, pre_cmd[i].value); 		
+			if(dbg_show) printf("pre >> %s, %s\n", 
+				pre_cmd[i].name, pre_cmd[i].value);				
+		} 
+
+		if (offset > 0)
+		{
+			if(dbg_show) printf("add\n");
+			fprintf(fp,"%s %s\n", pCmd, pVal); 		
+			if(dbg_show) printf("pre >> %s, %s\n", 
+					pCmd, pVal);								
+		}		
+	}
+	if (fp != NULL)  fclose(fp);
+	return;
+}
+ 
+void file_remove(void)
+{
+	printf("%s()\n", __FUNCTION__);	
+	unlink("config.dat");
+} 
+
+/*******************************************************************/
+int main(int argc, char* argv[])
+/*******************************************************************/
+{
+	int cmd_length = 0;
+	int val_length = 0;
+	char cmd[COMMAND_SIZE];
+	char value[COMMAND_SIZE];
+
+	memset(cmd, 0x00, sizeof(cmd));
+	memset(value, 0x00, sizeof(value));
+
+	// check argc	
+	if (argc > 3)
+		printf("Wrong argument\n");
+	
+	if (argc == 2)
+	{
+		if( strcmp(argv[1], CMD_FILE_REMOVE) == 0)
+			file_remove();
+		return 0;
+	}
+
+	// copy value.
+	cmd_length = strlen(argv[1]); 
+	memcpy(cmd, argv[1], cmd_length); 
+	val_length = strlen(argv[2]); 
+	memcpy(value, argv[2], val_length);  
+	if(dbg_show)  printf("cmd >> %s, %s\n", cmd, value); 
+	
+	// check command
+	if( strncmp(cmd, CMD_GATEWAY_IP, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}
+	else if( strncmp(cmd, CMD_IP_ADDR, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else if( strncmp(cmd, CMD_STATION_IP, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else if( strncmp(cmd, CMD_TARGET, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else if( strncmp(cmd, CMD_NET32, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else if( strncmp(cmd, CMD_BACNET, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else if( strncmp(cmd, CMD_SUBIO, cmd_length) == 0)
+	{
+		file_hadler(cmd, value);
+	}	
+	else
+		printf("Wrong commad\n");
+		
+	return 0;
+}

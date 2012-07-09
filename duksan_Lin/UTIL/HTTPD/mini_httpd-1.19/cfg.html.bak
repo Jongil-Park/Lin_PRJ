@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Page-exit" content="BlendTrans(Duration=0.1)">
+<title>덕산메카시스 GCU - 설정화면</title>
+<style type="text/css">
+.style1 {
+	font-size: 10pt;
+	font-weight: bold;		
+}
+.style2 {
+	font-size: 9pt;
+}
+</style>
+</head>
+
+<body onResize="top.resizeTo(470,530);" onload="top.resizeTo(470,530);">
+<font class="style1">&nbsp;:: GCU 환경설정 ::</font>
+<form action="cfg.html" target="_top" method="post" name="form2" class="style2" id="form2">
+<hr color ="silver" size="1"/>
+<table class="style2">
+	<tr>
+		<td width = "250px"> 
+		<font class="style2">&nbsp;&nbsp;3iStation과의 연결설정&nbsp; <!--1P-->(연결안함)          </font>
+		</td> 
+		<td width = "200px">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<INPUT TYPE="submit"  name="elba_on" value="사용함" align="absbottom" />
+		&nbsp;
+		<INPUT TYPE="submit"  name="elba_off" value="사용안함" align="absbottom" /> 
+		</td> 
+	</tr>
+</table>
+<hr color ="silver" size="1"/>
+<table class="style2">
+	<tr>
+		<td width = "250px"> 
+		<font class="style2">&nbsp;&nbsp;Net32 사용설정&nbsp; <!--2P-->(사용함)          </font>
+		</td> 
+		<td width = "200px">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<INPUT TYPE="submit"  name="net32_on" value="사용함" align="absbottom" />
+		&nbsp;
+		<INPUT TYPE="submit"  name="net32_off" value="사용안함" align="absbottom" /> 
+		</td> 
+	</tr>
+</table>
+<hr color ="silver" size="1"/>
+<table>
+	<tr>
+		<td width = "250px"> 
+		<font class="style2">&nbsp;&nbsp;APG 사용설정&nbsp; <!--3P-->(사용안함)          </font>
+		</td> 
+		<td width = "200px">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<INPUT TYPE="submit"  name="apg_on" value="사용함" align="absbottom" />
+		&nbsp;
+		<INPUT TYPE="submit"  name="apg_off" value="사용안함" align="absbottom" /> 
+		</td> 
+	</tr>
+</table>
+</form>
+<hr color ="silver" size="1"/>
+<table>
+	<tr>
+		<td width = "250px"> 
+			<font class="style2">
+			&nbsp;&nbsp;Local IP설정  
+			<!--4P-->(255.255.255.255)                                             
+			</font>		
+		</td> 
+		<td width = "200px">
+			<form action="" method="post" name="ip_form" class="style2" id="ip_form">
+			<label>
+			<INPUT TYPE="text"  name="my_ipaddr" align="absbottom" size=15/> 
+			</label>
+			&nbsp;
+			<label>
+			<INPUT TYPE="submit" value="적 용" align="absbottom"/>
+			</label>
+			</form>
+		</td> 
+	</tr>
+</table>
+<hr color ="silver" size="1"/>
+<table>
+	<tr>
+		<td width = "250px"> 
+			<font class="style2">
+			&nbsp;&nbsp;Gateway IP설정  
+			<!--5P-->(255.255.255.255)                                         
+			</font>			
+		</td> 
+		<td width = "200px">
+			<form action="" method="post" name="gw_form" class="style2" id="gw_form">
+			<label>
+			<INPUT TYPE="text"  name="my_gateway" align="absbottom"  size=15 /> 
+			</label>
+			&nbsp;
+			<label>
+			<INPUT TYPE="submit" value="적 용" align="absbottom"/>
+			</label>
+			</form>
+		</td> 
+	</tr>	
+</table>
+<hr color ="silver" size="1"/>
+<table>
+	<tr>
+		<td width = "250px"> 
+			<font class="style2">
+			&nbsp;&nbsp;Station IP설정  
+			<!--6P-->(255.255.255.255)                                      
+			</font>		
+		</td> 
+		<td width = "200px">
+			<form action="" method="post" name="st_form" class="style2" id="st_form">
+			<label>
+			<INPUT TYPE="text"  name="my_station" align="absbottom"  size=15 /> 
+			</label>
+			&nbsp;
+			<label>
+			<INPUT TYPE="submit" value="적 용" align="absbottom"/>
+			</label>
+			</form>
+		</td> 
+	</tr>		
+</table>
+<hr color ="silver" size="1"/>
+<font class="style2">
+&nbsp;:: IP와 관련된 항목을 잘못 설정하면 접속이 안될 수도 있습니다.<br>
+&nbsp;:: 설정하실 때 주의하세요.<p>
+</font>	
+<P ALIGN=RIGHT>
+<INPUT TYPE="submit"  name="window_close" value="창 닫기" align="absbottom" onclick="self.close();" /> </td> 
+&nbsp;&nbsp;&nbsp;&nbsp;
+</P>
+</body>
+</html>

@@ -1,0 +1,170 @@
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+//Define
+#include "define.h"
+#include "queue.h"
+#include "point_manager.h"
+#include "message_handler.h"
+#include "elba_message_handler.h"
+//Extern mutex
+extern pthread_mutex_t elbaQ_mutex;
+extern pthread_mutex_t net32Q_mutex;
+extern pthread_mutex_t elbaMessageQ_mutex;
+extern pthread_mutex_t elbaCmdQ_mutex;
+//Extern point_queue
+extern point_queue elba_queue;
+extern point_queue net32_queue;
+extern point_queue elba_message_queue;
+extern point_queue elba_cmd_queue;
+//Extern check function.
+extern int isVirtualPCM(int pcm);
+extern int isMyPCM(int pcm);
+//Extern status variable
+extern queue_status status;
+
+/*********************************************************/
+void* 
+elba_message_handler_main(void* arg)
+/*********************************************************/
+{
+	//Variables
+	int i, j;
+	int result;
+	float value;
+	point_info point;
+	struct timespec ts;
+	
+	//Initialize
+	i = j = 0;
+	result = ERROR;
+	value = 0;
+	memset(&point, 0, sizeof(point));
+	ts.tv_sec = 0;
+	ts.tv_nsec = 10000000; //0.01sec
+
+
+	while(1)
+	{
+		//
+		pthread_mutex_lock(&elbaMessageQ_mutex);
+		result = getq(&elba_message_queue, &point);
+		pthread_mutex_unlock(&elbaMessageQ_mutex);
+		if(result != SUCCESS)
+		{
+			if (result == QUEUE_FULL)
+				status.elba_message_full++;
+			nanosleep(&ts, NULL);
+			continue;
+		}
+		status.elba_message_out++;
+	
+		/*
+		if(point.message_type == ELBA_COMMAND)
+		{
+			//put to elbaCmdQ for interface
+			pthread_mutex_lock(&elbaCmdQ_mutex);
+			status.elba_cmd_in++;
+			putq(&elba_cmd_queue, point);
+			pthread_mutex_unlock(&elbaCmdQ_mutex);
+		}
+		*/
+
+		//printf("DEBUG : getQ from elba_message_queue, pcm = %d pno = %d\n", point.pcm, point.pno);
+		
+		switch(point.message_type)
+		{
+			case ELBA_REQUIRE:
+			{
+				if(isVirtualPCM(point.pcm) == SUCCESS)
+				{
+					point.value = pGet(point.pcm, point.pno);
+					point.message_type = ELBA_REPORT;
+					//
+					pthread_mutex_lock(&elbaQ_mutex);
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);
+				}
+				//
+				else if(isMyPCM(point.pcm) == SUCCESS)
+				{
+					point.value = pGet(point.pcm, point.pno);
+					point.message_type = ELBA_REPORT;
+					//
+					pthread_mutex_lock(&elbaQ_mutex);
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);
+				}
+				//
+				else
+				{
+					point.message_type = NET32_REQUIRE;
+					pthread_mutex_lock(&net32Q_mutex);
+					status.net32_in++;
+					putq(&net32_queue, point);
+					pthread_mutex_unlock(&net32Q_mutex);
+				}
+				//
+				break;
+			}
+			//
+			case ELBA_COMMAND:
+			{
+				if(isVirtualPCM(point.pcm) == SUCCESS)
+				{
+					pSet(point.pcm, point.pno, point.value);
+					point.value = pGet(point.pcm, point.pno);
+					//
+					point.message_type = ELBA_REPORT;
+					//printf("DEBUG : putQ to elba_queue(ELBA_COMMAND)\n");
+					pthread_mutex_lock(&elbaQ_mutex);
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);
+				}
+				//
+				else if(isMyPCM(point.pcm) == SUCCESS)
+				{
+					pSet(point.pcm, point.pno, point.value);
+					point.value = pGet(point.pcm, point.pno);
+					//printf("DEBUG : putQ to elba_queue(ELBA_COMMAND)\n");
+					//
+					point.message_type = ELBA_REPORT;
+					pthread_mutex_lock(&elbaQ_mutex);
+					status.elba_in++;
+					putq(&elba_queue, point);
+					pthread_mutex_unlock(&elbaQ_mutex);				
+					//
+					point.message_type = NET32_BROADCAST;
+					pthread_mutex_lock(&net32Q_mutex);
+					status.net32_in++;
+					putq(&net32_queue, point);
+					pthread_mutex_unlock(&net32Q_mutex);
+				}
+				//
+				else
+				{
+					point.message_type = NET32_COMMAND;
+					pthread_mutex_lock(&net32Q_mutex);
+					status.net32_in++;
+					putq(&net32_queue, point);
+					pthread_mutex_unlock(&net32Q_mutex);
+				}
+				//
+				break;
+			}
+		}
+	}
+	//return;
+}
+

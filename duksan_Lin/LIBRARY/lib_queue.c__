@@ -1,0 +1,99 @@
+/* file : lib_queue.c
+ * author : jong2ry@imecasys.com
+ * 
+ * 
+ * APG Library 에서 사용할 queue를 초기화 하거나 putq(), getq() 등의 동작을 수행한다. 
+ *  
+ *  
+ * 
+ * version :
+ *  	0.0.1 - initiailize									2010-07-26
+ *  
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "lib_queue.h"
+
+void initq(point_queue* queue)
+// ----------------------------------------------------------------------------
+// INITILIZE QUEUE
+// Description : queue를 초기화 한다. 
+// Arguments   : queue			Is a queue pointer.
+// Returns     : none
+{
+	queue->front = 0;
+	queue->rear = 0;
+	memset(queue->data, 0, sizeof(queue->data));
+
+	return;
+}
+
+
+int queue_full()
+// ----------------------------------------------------------------------------
+// RETURN FULL
+// Description : return QUEUE_FULL
+// Arguments   : none
+// Returns     : QUEUE_FULL
+{
+	return QUEUE_FULL;
+}
+
+int queue_empty()
+// ----------------------------------------------------------------------------
+// RETURN EMPTY
+// Description : return QUEUE_EMPTY
+// Arguments   : none
+// Returns     : QUEUE_EMPTY
+{
+	return QUEUE_EMPTY;
+}
+
+
+int putq(point_queue* p1, point_info *p2) 
+// ----------------------------------------------------------------------------
+// DATA PUT QUEUE
+// Description : queue에 data를 넣는다. 
+// Arguments   : p1				Is a queue pointer.
+// 				 p2				Is a point-value pointer.
+// Returns     : none
+{ 
+	int prev_rear;
+
+	prev_rear = p1->rear;
+	
+	p1->rear = (p1->rear + 1) % MAX_QUEUE_SIZE; 
+	
+	//fprintf( stderr, "q == %d, %d\n", p1->front, p1->rear );
+	//fflush(stderr);
+	
+	if ( p1->front == p1->rear ) { 
+		p1->rear = prev_rear;
+		return queue_full();        
+	} 
+	
+	memcpy( &p1->data[p1->rear], p2, sizeof(point_info) );
+	return SUCCESS;
+}
+
+
+int getq(point_queue *p1, point_info *p2) 
+// ----------------------------------------------------------------------------
+// DATA GET QUEUE
+// Description : queue에 data를 가져온다.
+// Arguments   : p1				Is a queue pointer.
+// 				 p2				Is a point-value pointer.
+// Returns     : none
+{ 	
+	if ( p1->front == p1->rear ) {		
+		return queue_empty(); 
+	}
+
+	p1->front = (p1->front + 1) % MAX_QUEUE_SIZE; 
+
+	memcpy( p2, &p1->data[p1->front], sizeof(point_info) ); 
+	return SUCCESS;
+} 
+

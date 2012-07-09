@@ -1,0 +1,13 @@
+echo "make clean"
+make clean
+echo "make"
+make
+echo "arm-linux-gcc -c hello.c"
+#gcc -c hello.c
+arm-linux-gcc -c hello.c
+echo "arm-linux-gcc -lpthread -o hello hello.o libinterface.a"
+#gcc -lpthread -o hello hello.o libinterface.a
+arm-linux-gcc -lpthread -o hello hello.o libinterface.a
+#echo "./hello"
+#./hello
+cp hello /root/AESOP/lsu

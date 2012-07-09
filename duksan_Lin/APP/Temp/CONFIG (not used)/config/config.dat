@@ -1,0 +1,7 @@
+gatewayip 192.168.2.1
+ipaddr 192.168.2.99
+subio on
+net32 of
+bacnet off
+target 3is
+stationip 192.168.2.100

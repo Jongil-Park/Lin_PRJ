@@ -1,0 +1,1 @@
+cmd_/duksan_app/duksan/MODULE/gpio/dev_gpio.ko := arm-linux-ld -EL  -r -o /duksan_app/duksan/MODULE/gpio/dev_gpio.ko /duksan_app/duksan/MODULE/gpio/dev_gpio.o /duksan_app/duksan/MODULE/gpio/dev_gpio.mod.o

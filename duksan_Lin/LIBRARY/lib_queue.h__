@@ -1,0 +1,39 @@
+#ifndef LIB_QUEUE_H
+#define LIB_QUEUE_H	
+
+// define ============================================================
+#define QUEUE_FULL				2
+#define QUEUE_EMPTY				3
+#define MAX_QUEUE_SIZE			2048
+
+#define SUCCESS					1
+#define ERROR				   -1
+
+#define TRUE					1
+#define FALSE					0
+
+// structs =========================================================
+typedef struct 
+{
+	short	pcm;											// pcm
+	short	pno;											// pno
+	float	value;											// value
+	int		message_type;									// type
+} point_info ;
+
+typedef struct
+{
+	int front;  											// front index of queue
+	int rear;												// rear index of queue
+	point_info data[MAX_QUEUE_SIZE];						// queue data array
+} point_queue;
+
+
+// functions =========================================================
+void initq(point_queue* queue);
+int putq(point_queue *p1, point_info *p2);
+int getq(point_queue *p1, point_info *p2);
+int queue_full();
+int queue_empty();
+
+#endif
